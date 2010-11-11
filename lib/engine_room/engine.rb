@@ -3,6 +3,12 @@ module EngineRoom
 
     config.mount_at = '/'
     
+    # Load rake tasks
+    rake_tasks do
+      #load File.join(File.dirname(__FILE__), 'rails/railties/tasks.rake')
+      load "engine_room/railties/tasks.rake"
+    end
+    
     # Check the gem config
     initializer "check config" do |app|
       # make sure mount_at ends with trailing slash
