@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!--[if IE]><![endif]-->
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>engine_room</title>
+  <meta name="description" content="">
+  <meta name="author" content="Boris Searels">
+
+  <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag 
+  device-width : Occupy full width of the screen in its current orientation
+  initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+  maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width
+  -->
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+	<link id="bespin_base" href="/javascripts/bespin">
+	
+  <!-- CSS : implied media="all" -->
+	<%= stylesheet_link_tag("boilerplate") %>
+	
+  <!-- For the less-enabled mobile browsers like Opera Mini -->
+	<%= stylesheet_link_tag("handheld") %>
+	<%= stylesheet_link_tag("admin") %>
+ 
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <script src="/javascripts/modernizr-1.5.min.js"></script>
+
+	<%= csrf_meta_tag %>
+</head>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->
+
+	<div id="wrapper">
+
+		<header id="header">
+			<div class="logo">engine_room</div>
+			<div class="user-logout">boso (<a href="#">ausloggen</a>)</div>
+			<div class="preview"><a href="/" target="_blank">Vorschau &ouml;ffnen</a></div>
+		</header>
+		
+		<nav id="nav">
+			<div>
+				<ul>
+					<li><%= link_to "Dashboard", { :controller => 'pages', :action => :dashboard } %></li>
+					<li><%= link_to "Models", { :controller => 'models', :action => :overview } %></li>
+					<li><a href="#">Settings</a></li>
+					<li><a href="#">Users</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div id="content">
+			<%- flash.each do |name, msg| -%>
+				<%= content_tag :div, msg, :id => "flash_#{name}" %>
+			<%- end -%>
+			
+			<%= yield %>
+		</div><!-- #content -->
+		
+		<footer>
+			<hr />
+			<p class="quiet bottom">&copy; 2010 engine_room. All rights reserved.</p>
+		</footer>
+		
+	</div><!-- #wrapper -->
+	<%= debug(params) if Rails.env.development? %>
+
+  <!-- Javascript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script>!window.jQuery && document.write('<script src="/javascripts/jquery-1.4.2.min.js"><\/script>')</script>
+
+	<script src="/javascripts/bespin/BespinEmbedded.js"></script>
+	<script src="/javascripts/nicEdit/nicEdit.js"></script>
+  <script src="/javascripts/plugins.js?v=1"></script>
+  <!-- script src="/javascripts/script.js?v=1"></script -->
+
+	<script type="text/javascript" charset="utf-8">
+	bkLib.onDomLoaded(function() {
+		new nicEditor({iconsPath : '/javascripts/nicEditor/nicEditorIcons.gif'}).panelInstance('area3');
+	});
+	
+	</script>
+
+  <!--[if lt IE 7 ]>
+    <script src="/javascripts/dd_belatedpng.js?v=1"></script>
+  <![endif]-->
+  
+</body>
+</html>

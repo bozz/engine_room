@@ -1,0 +1,24 @@
+<p><%= link_to "Back", { :controller => 'models', :action => :index } %></p>
+
+<h1><%= @modelname.singularize.camelize %></h1>
+
+<% if @error %>
+	<p style="color:red"><%= @error %></p>
+<% else %>
+
+	<%= form_for @element, :url => { :controller => "models", :action => :update } do |f| %>
+		<%= render 'error_messages', :object => f.object %>
+		
+	 	<% @model.columns.each do |column| %>
+			<div class="field">
+				<%= f.label column.name %>
+				<%= get_form_field_for_column(f, @element, column) %>
+			</div>
+		<% end %>
+		
+	  <div class="actions">
+	    <%= f.submit "Submit" %>
+	  </div>
+	<% end %>
+	
+<% end %>

@@ -1,0 +1,23 @@
+<p><%= link_to "Back", { :controller => 'models', :action => :overview } %></p>
+
+<h1><%= @modelname.pluralize.camelize %></h1>
+
+<% if @error %>
+	<p style="color:red"><%= @error %></p>
+<% else %>
+
+	<ul>
+	<% @elements.each do |element|	 %>
+		<li>
+		<% 
+			@model.column_names.each do |cname| 
+				if cname == "id" || cname == "title" || cname == "name"
+		%>
+			<%= link_to element[cname], { :controller => 'models', :action => :edit, :id => element.id }%>
+		<%  end 
+			end %>
+		</li>
+	<% end %>
+	</ul>
+	
+<% end %>
