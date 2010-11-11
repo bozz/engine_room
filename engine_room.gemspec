@@ -14,10 +14,11 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "engine_room"
   
-  #s.add_dependency 'devise', '~> 0.8.2'
+  s.add_dependency 'devise', '~> 1.1.3'
   #s.add_dependency 'cancan', '~> 0.8.2'
   s.add_dependency 'rails', '~> 3.0.1'
   s.add_development_dependency 'capybara', '>= 0.3.9'
+  s.add_development_dependency 'webrat'
   s.add_development_dependency 'rspec-rails', '~> 2.1.0'
   s.add_development_dependency 'sqlite3-ruby'
 
