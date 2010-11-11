@@ -1,4 +1,4 @@
-Rails.application.routes.draw do |map|
+Rails.application.routes.draw do
   
   engine_room_path = 'er'
 
@@ -9,16 +9,16 @@ Rails.application.routes.draw do |map|
 
     # workaround for models resource for including dynamic segment
     # resources :models
-    controller :models do
-      get     'models'                      => :overview
-      get     'models/:modelname'           => :index
-      get     'models/:modelname/new'       => :new
-      post    'models/:modelname'           => :create
-      get     'models/:modelname/:id'       => :show
-      get     'models/:modelname/:id/edit'  => :edit
-      put     'models/:modelname/:id'       => :update
-      delete  'models/:modelname/:id'       => :destroy
-    end
+    #controller :models do
+    #  get     'models'                      => :overview
+    #  get     'models/:modelname'           => :index
+    #  get     'models/:modelname/new'       => :new
+    #  post    'models/:modelname'           => :create
+    #  get     'models/:modelname/:id'       => :show
+    #  get     'models/:modelname/:id/edit'  => :edit
+    #  put     'models/:modelname/:id'       => :update
+    #  delete  'models/:modelname/:id'       => :destroy
+    #end
   end
   
   #mount_at = EngineRoom::Engine.config.mount_at

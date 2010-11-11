@@ -17,6 +17,8 @@ require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 
+load "tasks/dummy.rake"
+
 task :default => :spec
 
 Rake::RDocTask.new(:rdoc) do |rdoc|

@@ -1,6 +1,8 @@
 .bundle/
 log/*.log
 pkg/
+spec/dummy/app/models/*
 spec/dummy/db/*.sqlite3
+spec/dummy/db/migrate
 spec/dummy/log/*.log
 spec/dummy/tmp/
