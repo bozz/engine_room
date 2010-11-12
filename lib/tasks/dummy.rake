@@ -27,6 +27,11 @@ namespace :dummy do
       FileUtils.copy(file, models_target)
     end
     
+    # copy user migration (devise)
+    user_migrate = File.join(engine_root_path, "lib", "generators", "engine_room", "templates", "001_devise_create_users.rb")
+    puts "copy file: #{user_migrate} ==> #{models_target}"
+    FileUtils.copy(user_migrate, migrate_target)
+
     puts "fin."
   end
 end

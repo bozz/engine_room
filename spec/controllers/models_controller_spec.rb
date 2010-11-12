@@ -11,6 +11,22 @@ describe EngineRoom::ModelsController do
         get :overview
       end
 
+      it "should not be successful" do
+        response.should_not be_success
+      end
+
+      it "should redirect to login page" do
+        response.should redirect_to(new_er_devise_user_session_path)
+      end 
+    end
+    
+    describe "when signed in" do
+
+      before(:each) do
+        sign_in Factory(:user)
+        get :overview
+      end
+
       it "should be successful" do
         response.should be_success
       end
@@ -30,7 +46,7 @@ describe EngineRoom::ModelsController do
       end
 
       it "should be successful" do
-        response.should be_success
+        response.should_not be_success
       end
 
       #it "should have the right heading" do

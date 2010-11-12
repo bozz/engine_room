@@ -19,5 +19,21 @@ module EngineRoom
       app.middleware.use ::ActionDispatch::Static, "#{root}/public"
       # app.middleware.insert_after ActionDispatch::Static, ActionDispatch::Static, "#{root}/public"
     end
+    
+    # TODO: move override into external module (couldn't get it working)
+    # override paths for Devise after sign-in and sign-out
+    initializer 'override ActionController' do |app|  
+      ActiveSupport.on_load(:action_controller) do  
+        class ActionController::Base
+          def after_sign_in_path_for(resource)
+            engine_room_root_path
+          end
+          def after_sign_out_path_for(resource)
+            new_er_devise_user_session_path
+          end
+        end
+      end
+    end
+    
   end
 end

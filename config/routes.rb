@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   
-  engine_room_path = 'er'
-
+  engine_room_path = 'admin'
+  
+  namespace :er_devise, :path => engine_room_path do
+    devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :sign_up => 'register' }
+  end
+  
   namespace :engine_room, :path => engine_room_path do
-    resources :tests, :only => [ :index ]
-
+    
     root :to => "pages#dashboard"
-
+    
+    #devise_for :users, :module => "devise", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :sign_up => 'register' }
+    
     # workaround for models resource for including dynamic segment
     # resources :models
     controller :models do
@@ -22,9 +27,7 @@ Rails.application.routes.draw do
   end
   
   #mount_at = EngineRoom::Engine.config.mount_at
-
   #resources :tests, :controller => "engine_room/tests", :only => [ :index ]
-                          
                           #:path_prefix => mount_at,
                           #:name_prefix => "er_"
 

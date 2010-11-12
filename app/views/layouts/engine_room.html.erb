@@ -54,7 +54,7 @@
 
 		<header id="header">
 			<div class="logo">engine_room</div>
-			<div class="user-logout">boso (<a href="#">ausloggen</a>)</div>
+			<div class="user-logout"><%= current_er_devise_user.username %> (<%= link_to "ausloggen", destroy_er_devise_user_session_path %>)</div>
 			<div class="preview"><a href="/" target="_blank">Vorschau &ouml;ffnen</a></div>
 		</header>
 		
@@ -70,6 +70,7 @@
 		</nav>
 
 		<div id="content">
+			
 			<%- flash.each do |name, msg| -%>
 				<%= content_tag :div, msg, :id => "flash_#{name}" %>
 			<%- end -%>

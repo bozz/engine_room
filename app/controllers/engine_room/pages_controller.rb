@@ -1,10 +1,10 @@
 module EngineRoom
   class PagesController < ApplicationController
+    before_filter :authenticate_er_devise_user!
+    
     layout 'engine_room'
     
     unloadable
-    
-    #layout 'engineroom'  # this allows you to have a gem-wide layout
     
     def dashboard
     end
