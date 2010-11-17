@@ -54,17 +54,17 @@
 
 		<header id="header">
 			<div class="logo">engine_room</div>
-			<div class="user-logout"><%= current_er_devise_user.username %> (<%= link_to "ausloggen", destroy_er_devise_user_session_path %>)</div>
-			<div class="preview"><a href="/" target="_blank">Vorschau &ouml;ffnen</a></div>
+			<div class="user-logout"><%= current_er_devise_user.username %> (<%= link_to t(:log_out), destroy_er_devise_user_session_path %>)</div>
+			<div class="preview"><a href="/" target="_blank"><%= t(:preview) %></a></div>
 		</header>
 		
 		<nav id="nav">
 			<div>
 				<ul>
-					<li><%= link_to "Dashboard", { :controller => 'engine_room/pages', :action => :dashboard } %></li>
-					<li><%= link_to "Models", { :controller => 'engine_room/models', :action => :overview } %></li>
-					<li><a href="#">Settings</a></li>
-					<li><%= link_to "User", edit_er_devise_user_registration_path %></li>
+					<li><%= link_to t('nav.dashboard'), { :controller => 'engine_room/pages', :action => :dashboard } %></li>
+					<li><%= link_to t('nav.models'), { :controller => 'engine_room/models', :action => :overview } %></li>
+					<li><a href="#"><%= t('nav.settings') %></a></li>
+					<li><%= link_to t('nav.user'), edit_er_devise_user_registration_path %></li>
 				</ul>
 			</div>
 		</nav>

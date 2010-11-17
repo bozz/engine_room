@@ -1,0 +1,22 @@
+
+de:
+  log_out: "ausloggen"
+  preview: "Vorschau öffnen"
+  nav:
+    dashboard: "Übersicht"
+    models: "Tabellen"
+    settings: "Einstellungen"
+    user: "Benutzer"
+  engine_room: 
+    pages:
+      dashboard:
+        title: "Übersicht"
+    models:
+      overview:
+        title: "Tabellen"
+  er_devise:
+    registrations:
+      edit:
+        title: "Benutzer Editieren"
+        submit_button: "Aktualisieren"
+        cancel_account: "Account löschen"

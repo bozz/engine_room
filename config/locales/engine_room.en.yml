@@ -1,0 +1,22 @@
+
+en:
+  log_out: "log out"
+  preview: "open preview"
+  nav:
+    dashboard: "Dashboard"
+    models: "Models"
+    settings: "Settings"
+    user: "User"
+  engine_room: 
+    pages:
+      dashboard:
+        title: "Dashboard"
+    models:
+      overview:
+        title: "Overview Title"
+  er_devise:
+    registrations:
+      edit:
+        title: "Edit User"
+        submit_button: "Update"
+        cancel_account: "Cancel Account"
