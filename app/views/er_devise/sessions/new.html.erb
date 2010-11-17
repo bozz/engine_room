@@ -1,6 +1,11 @@
-<h2>Sign in BBB</h2>
+<h2>Sign in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	
+	<%- flash.each do |name, msg| -%>
+		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<%- end -%>
+	
 	<p><%= f.label :username %><br />
 	<%= f.text_field :username %></p>
 
@@ -8,10 +13,11 @@
   <%= f.password_field :password %></p>
 
   <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <p class="remember-me"><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
   <% end -%>
 
-  <p><%= f.submit "Sign in" %></p>
+  <p><button type="submit">Sign in</button></p>
+
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

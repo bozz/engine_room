@@ -1,0 +1,96 @@
+body {
+	background: #eee;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 14px;
+}
+
+#wrapper {
+	margin: 120px auto 0;
+	width: 420px;
+}
+#content form {
+	background-color: #bbb;
+	border: 1px solid #999;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#999999');
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+	background: -moz-linear-gradient(top,  #ccc,  #999);
+	
+	margin: 10px 0;
+	padding: 10px 75px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+button {
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-box-shadow:0px 0px 2px rgba(0,0,0,0.4);
+	-webkit-box-shadow:0px 0px 2px rgba(0,0,0,0.4);
+
+	color:rgba(0,0,0,0.9);
+	text-shadow:1px 1px 0px rgba(255,255,255,0.8);
+	border:1px solid rgba(0,0,0,0.5);
+	
+	background:-webkit-gradient(linear,0% 0%,0% 100%,from(rgba(255,255,255,1)),to(rgba(185,185,185,1)));
+	background:-moz-linear-gradient(top,rgba(255,255,255,1),rgba(185,185,185,1));
+
+	padding:5px 5px 5px 5px;
+}
+button:hover {
+	background:rgba(240,240,240,1);
+}
+button:active, button:focus {
+	background:-webkit-gradient(linear,0% 100%,0% 0%,from(rgba(255,255,255,1)),to(rgba(185,185,185,1)));
+	background:-moz-linear-gradient(bottom,rgba(255,255,255,1),rgba(185,185,185,1));
+}
+button:disabled {
+	color:rgba(0,0,0,0.4);
+	text-shadow:1px 1px 0px rgba(255,255,255,0.5);
+	background:rgba(220,220,220,1);
+}
+
+
+
+#content h2 {
+	font-size: 1.5em;
+	text-align: center;
+}
+
+#flash_alert,
+#flash_notice {
+	margin-top: 10px;
+	padding: 5px;
+}
+
+#flash_alert {
+	background-color: #CC3333;
+	color: white;
+}
+#flash_notice {
+	background-color: #488E48;
+	color: white;
+}
+
+#content form {
+	margin-top: 15px;
+}
+#content label {
+	margin: 3px 0;
+}
+#content p {
+	margin: 20px 0;
+}
+#content input {
+	padding: 5px 3px 3px;
+	width: 95%;
+}
+#content p.remember-me {
+	font-size: 12px;
+}
+#content p.remember-me input {
+	margin-right: 5px;
+	width: auto;
+}
+#content button {
+	font-size: 12px;
+}
