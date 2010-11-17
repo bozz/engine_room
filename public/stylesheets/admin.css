@@ -7,7 +7,7 @@ body {
 
 a:link,
 a:visited {
-	color: #666;
+	color: #0077ff;
 	text-decoration: underline;
 }
 a:hover,
@@ -17,7 +17,15 @@ a:active {
 
 h1 {
 	font-size: 1.6em;
-	margin: 15px 000;
+	margin: 15px 0;
+}
+h2 {
+	font-size: 1.3em;
+	margin: 15px 0;
+}
+h3 {
+	font-size: 1.1em;
+	margin: 10px 0;
 }
 
 .icon-cut,
@@ -67,7 +75,7 @@ button {
 	background:-moz-linear-gradient(top,rgba(255,255,255,1),rgba(185,185,185,1));
 
 	font-weight: bold;
-	padding:5px 10px;
+	padding:5px 10px 3px;
 }
 button:hover {
 	background:rgba(240,240,240,1);
@@ -82,21 +90,48 @@ button:disabled {
 	background:rgba(220,220,220,1);
 }
 
+/* Flash and Error Messages */
+
+#error_explanation,
 #flash_alert,
 #flash_notice {
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
 	margin-top: 10px;
-	padding: 5px;
-	width: 300px;
+	padding: 10px 10px 5px 40px;
+	width: 400px;
 }
 
+#error_explanation,
 #flash_alert {
-	background-color: #CC3333;
-	color: white;
+	background: #FFD6D6 url(../images/er/cancel.png) no-repeat 10px 8px;
+	border: 1px solid #FF8080;
+	color: #E3302C;
 }
 #flash_notice {
-	background-color: #488E48;
-	color: white;
+	background: #D4F5A3 url(../images/er/accept.png) no-repeat 10px 8px;
+	border: 1px solid #6EB800;
+	color: #508600;
 }
+
+#content #error_explanation {
+	margin-bottom: 15px;
+	width: auto;
+}
+#content #error_explanation h2 {
+	color: #E3302C;
+	font-size: 14px;
+	margin: 0 0 5px;
+}
+#content div.field_with_errors label {
+	color: #E3302C;
+}
+#content div.field_with_errors input {
+	border-color: #FF8080;
+	background-color: #FFD6D6;
+}
+
+
 
 #wrapper {
 	margin: 20px 50px;
@@ -136,8 +171,7 @@ nav {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	clear: both;
-	height: 30px;
-	padding-left: 5px;
+	padding: 2px 5px;
 }
 nav ul {
 	height: 30px;
@@ -173,10 +207,6 @@ nav div {
 	font-size: 11px;
 	position: relative;
 	top: -10px;
-}
-#content h2 {
-	font-size: 18px;
-	margin-bottom: 10px;
 }
 #content p {
 	/* font-size: 12px; */
@@ -266,44 +296,57 @@ nav div {
 	font-weight: bold;
 	padding-right: 20px;
 }
-
-
-#content .teaser-mapping li {
-	margin: 10px 0;
+#content div.box {
+	padding: 10px;
 }
-#content .teaser-mapping ul {
-	margin: 15px 0;
-}
-#content .teaser-mapping h4 {
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
 
 /* Forms */
 
-div.field {
+#content div.box,
+#content form {
 	background-color: #ddd;
+	border: 1px solid #bbb;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	margin: 10px 0;
+}
+
+div.field {
 	border-bottom: 1px solid #bbb;
 	padding: 10px;
+	padding-left: 200px;
+	position: relative;
 }
 div.field label {
-	float: left;
+	position: absolute;
 	font-weight: bold;
+	margin-top: 5px;
+	left: 10px;
+	top: 10px;
 	width: 200px;
 }
+div.field textarea,
 div.field input {
-	padding: 4px 5px 1px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border: 1px solid #999;
+	margin-right: 5px;
+	padding: 7px 7px 4px;
 }
 div.field input[type=text] {
-	width: 500px;
+	width: 96%;
 }
 div.field textarea {
 	height: 300px;
 	width: 800px
 }
+div.field i {
+	color: #666;
+	display: inline-block;
+	margin-top: 8px;
+}
 div.actions {
-	margin-left: 200px;
+	margin-left: 190px;
 	padding: 10px;
 }
 

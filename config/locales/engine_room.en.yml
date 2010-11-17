@@ -4,16 +4,16 @@ en:
   preview: "open preview"
   nav:
     dashboard: "Dashboard"
-    models: "Models"
+    models: "Pages"
     settings: "Settings"
-    user: "User"
+    user: "Users"
   engine_room: 
     pages:
       dashboard:
         title: "Dashboard"
     models:
       overview:
-        title: "Overview Title"
+        title: "Pages"
   er_devise:
     registrations:
       edit:
