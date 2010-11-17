@@ -61,10 +61,10 @@
 		<nav id="nav">
 			<div>
 				<ul>
-					<li><%= link_to "Dashboard", { :controller => 'pages', :action => :dashboard } %></li>
-					<li><%= link_to "Models", { :controller => 'models', :action => :overview } %></li>
+					<li><%= link_to "Dashboard", { :controller => 'engine_room/pages', :action => :dashboard } %></li>
+					<li><%= link_to "Models", { :controller => 'engine_room/models', :action => :overview } %></li>
 					<li><a href="#">Settings</a></li>
-					<li><a href="#">Users</a></li>
+					<li><%= link_to "User", edit_er_devise_user_registration_path %></li>
 				</ul>
 			</div>
 		</nav>

@@ -15,7 +15,7 @@ body {
 	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
 	background: -moz-linear-gradient(top,  #ccc,  #999);
 	
-	margin: 10px 0;
+	margin: 5px 0 10px;
 	padding: 10px 75px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -34,6 +34,7 @@ button {
 	background:-webkit-gradient(linear,0% 0%,0% 100%,from(rgba(255,255,255,1)),to(rgba(185,185,185,1)));
 	background:-moz-linear-gradient(top,rgba(255,255,255,1),rgba(185,185,185,1));
 
+	font-weight: bold;
 	padding:5px 5px 5px 5px;
 }
 button:hover {
@@ -52,7 +53,9 @@ button:disabled {
 
 
 #content h2 {
+	color:#0099FF;
 	font-size: 1.5em;
+	font-weight: normal;
 	text-align: center;
 }
 
@@ -71,10 +74,8 @@ button:disabled {
 	color: white;
 }
 
-#content form {
-	margin-top: 15px;
-}
 #content label {
+	color: #444;
 	margin: 3px 0;
 }
 #content p {
