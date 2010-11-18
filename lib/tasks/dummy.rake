@@ -31,6 +31,14 @@ namespace :dummy do
     user_migrate = File.join(engine_root_path, "lib", "generators", "engine_room", "templates", "001_devise_create_users.rb")
     puts "copy file: #{user_migrate} ==> #{models_target}"
     FileUtils.copy(user_migrate, migrate_target)
+    
+    section_migrate = File.join(engine_root_path, "lib", "generators", "engine_room", "templates", "002_create_sections.rb")
+    puts "copy file: #{section_migrate} ==> #{models_target}"
+    FileUtils.copy(section_migrate, migrate_target)
+    
+    field_migrate = File.join(engine_root_path, "lib", "generators", "engine_room", "templates", "003_create_fields.rb")
+    puts "copy file: #{field_migrate} ==> #{models_target}"
+    FileUtils.copy(field_migrate, migrate_target)
 
     puts "fin."
   end

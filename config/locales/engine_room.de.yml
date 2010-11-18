@@ -20,3 +20,10 @@ de:
         title: "Benutzer Editieren"
         submit_button: "Aktualisieren"
         cancel_account: "Account löschen"
+  activerecord:
+    models:
+      user: "Benutzer"
+    attributes:
+      user:
+        username: "Benutzername"
+        email: "E-Mail"

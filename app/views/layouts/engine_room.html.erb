@@ -61,10 +61,10 @@
 		<nav id="nav">
 			<div>
 				<ul>
-					<li><%= link_to t('nav.dashboard'), { :controller => 'engine_room/pages', :action => :dashboard } %></li>
-					<li><%= link_to t('nav.models'), { :controller => 'engine_room/models', :action => :overview } %></li>
-					<li><a href="#"><%= t('nav.settings') %></a></li>
-					<li><%= link_to t('nav.user'), edit_er_devise_user_registration_path %></li>
+					<li><%= link_to t('nav.dashboard'), engine_room_root_path %></li>
+					<li><%= link_to t('nav.models'), engine_room_models_path %></li>
+					<li><%= link_to t('nav.settings'), engine_room_sections_path %></li>
+					<li><%= link_to t('nav.user'), '#' %></li>
 				</ul>
 			</div>
 		</nav>
@@ -87,7 +87,7 @@
 		</footer>
 		
 	</div><!-- #wrapper -->
-	<%= debug(params) if Rails.env.development? %>
+	<%= debug(params) if !Rails.env.development? %>
 
   <!-- Javascript at the bottom for fast page loading -->
 

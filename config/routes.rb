@@ -10,19 +10,23 @@ Rails.application.routes.draw do
     
     root :to => "pages#dashboard"
     
+    get 'settings' => "pages#settings"
+    
+    resources :sections
+    
     #devise_for :users, :module => "devise", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :sign_up => 'register' }
     
     # workaround for models resource for including dynamic segment
     # resources :models
     controller :models do
       get     'models'                      => :overview
-      get     'models/:modelname'           => :index
-      get     'models/:modelname/new'       => :new
-      post    'models/:modelname'           => :create
-      get     'models/:modelname/:id'       => :show
-      get     'models/:modelname/:id/edit'  => :edit
-      put     'models/:modelname/:id'       => :update
-      delete  'models/:modelname/:id'       => :destroy
+      get     'model/:modelname'           => :index
+      get     'model/:modelname/new'       => :new
+      post    'model/:modelname'           => :create
+      get     'model/:modelname/:id'       => :show
+      get     'model/:modelname/:id/edit'  => :edit
+      put     'model/:modelname/:id'       => :update
+      delete  'model/:modelname/:id'       => :destroy
     end
   end
   

@@ -89,11 +89,16 @@ button:disabled {
 	text-shadow:1px 1px 0px rgba(255,255,255,0.5);
 	background:rgba(220,220,220,1);
 }
+button.add {
+	/* background: url(../images/er/add.png) no-repeat 4px center;
+	padding-left: 25px; */
+}
 
 /* Flash and Error Messages */
 
 #error_explanation,
 #flash_alert,
+#flash_error,
 #flash_notice {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
@@ -103,6 +108,7 @@ button:disabled {
 }
 
 #error_explanation,
+#flash_error,
 #flash_alert {
 	background: #FFD6D6 url(../images/er/cancel.png) no-repeat 10px 8px;
 	border: 1px solid #FF8080;
@@ -147,6 +153,8 @@ button:disabled {
 	float: left;
 	font-size: 1.5em;
 	padding-left: 15px;
+	position: relative;
+	top: -5px;
 }
 #header .preview,
 #header .user-logout {

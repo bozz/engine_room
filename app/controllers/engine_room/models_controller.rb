@@ -1,64 +1,53 @@
 module EngineRoom
   class ModelsController < ApplicationController
     before_filter :authenticate_er_devise_user!
+    before_filter :check_model_name, :except => [:overview]
     
     layout 'engine_room'
     
     unloadable
     
-    def overview
-      # load all models 
-      Dir.glob(Rails.root.to_s + '/app/models/*.rb').each { |file| require file }
-      
-      # access all loaded models
-      # TODO: causes tests to fail !! -- no database
-      @models = ActiveRecord::Base.send(:descendants)
-    end
-    
-    
-    def index
+    def check_model_name
       @modelname = params[:modelname]
       begin
         @model = get_model(@modelname)
-        @elements = @model.find(:all)
       rescue NameError
-        @error = "No model with given name was found!"
+        flash[:error] = "No model with given name was found!"
+        redirect_to :action => :overview
       end
+    end
+    
+    
+    def overview
+      @models = []
+      Section.all.each do |section|
+        begin
+          @models << get_model(section.model_name)
+        rescue NameError
+          # ignore errors
+        end
+      end
+    end
+
+    
+    def index
+      @elements = @model.find(:all)
     end
     
     def show
-      @modelname = params[:modelname]
-      begin
-        @model = get_model(@modelname)
-        @element = @model.find(params[:id])
-      rescue NameError
-        @error = "No model with given name was found!"
-      end
+      @element = @model.find(params[:id])
     end
     
     def edit
-      @modelname = params[:modelname]
-      begin
-        @model = get_model(@modelname)
-        @element = @model.find(params[:id])
-      rescue
-        @error = "No model with given name was found!"
-      end
+      @element = @model.find(params[:id])
     end
     
     def update
-      @modelname = params[:modelname]
-      begin
-        @model = get_model(@modelname)
-        @element = @model.find(params[:id])
-        if @element.update_attributes(params[@modelname.downcase])
-          flash[:success] = "#{@modelname} successfully updated."
-          redirect_to :action => :edit
-        else
-          render 'edit'
-        end
-      rescue
-        @error = "No model with given name was found!"
+      @element = @model.find(params[:id])
+      if @element.update_attributes(params[@modelname.downcase])
+        flash[:notice] = "#{@modelname} successfully updated."
+        redirect_to :action => :edit
+      else
         render 'edit'
       end
     end

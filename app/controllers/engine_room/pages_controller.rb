@@ -9,5 +9,9 @@ module EngineRoom
     def dashboard
     end
     
+    def settings
+      @sections = Section.all
+    end
+    
   end
 end

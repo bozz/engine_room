@@ -17,50 +17,50 @@ describe "ModelsController routes" do
   
   describe "GET 'index'" do
   
-    it "should map /admin/models/cats to { :controller => 'engine_room/models', :action => 'index', :modelname => 'cats' }" do
-      { :get => "/admin/models/cats" }.should route_to( :controller => "engine_room/models", :action => "index", :modelname => 'cats' )
+    it "should map /admin/model/cats to { :controller => 'engine_room/models', :action => 'index', :modelname => 'cats' }" do
+      { :get => "/admin/model/cats" }.should route_to( :controller => "engine_room/models", :action => "index", :modelname => 'cats' )
     end
   end
 
   describe "GET 'show'" do
   
-    it "should map /admin/models/cat/23 to { :controller => 'engine_room/models', :action => 'show', :modelname => 'cat', :id => 23 }" do
-      { :get => "/admin/models/cat/23" }.should route_to( :controller => "engine_room/models", :action => "show", :modelname => 'cat', :id => "23" )
+    it "should map /admin/model/cat/23 to { :controller => 'engine_room/models', :action => 'show', :modelname => 'cat', :id => 23 }" do
+      { :get => "/admin/model/cat/23" }.should route_to( :controller => "engine_room/models", :action => "show", :modelname => 'cat', :id => "23" )
     end
   end
   
   describe "GET 'edit'" do
   
-    it "should map /admin/models/cat/23/edit to { :controller => 'engine_room/models', :action => 'edit', :modelname => 'cat', :id => 23 }" do
-      { :get => "/admin/models/cat/23/edit" }.should route_to( :controller => "engine_room/models", :action => "edit", :modelname => 'cat', :id => "23" )
+    it "should map /admin/model/cat/23/edit to { :controller => 'engine_room/models', :action => 'edit', :modelname => 'cat', :id => 23 }" do
+      { :get => "/admin/model/cat/23/edit" }.should route_to( :controller => "engine_room/models", :action => "edit", :modelname => 'cat', :id => "23" )
     end
   end
 
   describe "GET 'new'" do
   
-    it "should map /admin/models/cat/new to { :controller => 'engine_room/models', :action => 'new', :modelname => 'cat' }" do
-      { :get => "/admin/models/cat/new" }.should route_to( :controller => "engine_room/models", :action => "new", :modelname => 'cat' )
+    it "should map /admin/model/cat/new to { :controller => 'engine_room/models', :action => 'new', :modelname => 'cat' }" do
+      { :get => "/admin/model/cat/new" }.should route_to( :controller => "engine_room/models", :action => "new", :modelname => 'cat' )
     end
   end
   
   describe "POST 'create'" do
   
-    it "should map /admin/models/cat to { :controller => 'engine_room/models', :action => 'create', :modelname => 'cat' }" do
-      { :post => "/admin/models/cat" }.should route_to( :controller => "engine_room/models", :action => "create", :modelname => 'cat' )
+    it "should map /admin/model/cat to { :controller => 'engine_room/models', :action => 'create', :modelname => 'cat' }" do
+      { :post => "/admin/model/cat" }.should route_to( :controller => "engine_room/models", :action => "create", :modelname => 'cat' )
     end
   end
   
   describe "PUT 'update'" do
   
-    it "should map /admin/models/cat/23 to { :controller => 'engine_room/models', :action => 'update', :modelname => 'cat', :id => 23 }" do
-      { :put => "/admin/models/cat/23" }.should route_to( :controller => "engine_room/models", :action => "update", :modelname => 'cat', :id => "23" )
+    it "should map /admin/model/cat/23 to { :controller => 'engine_room/models', :action => 'update', :modelname => 'cat', :id => 23 }" do
+      { :put => "/admin/model/cat/23" }.should route_to( :controller => "engine_room/models", :action => "update", :modelname => 'cat', :id => "23" )
     end
   end
   
   describe "DELETE 'destroy'" do
   
-    it "should map /admin/models/cat/23 to { :controller => 'engine_room/models', :action => 'destroy', :modelname => 'cat', :id => 23 }" do
-      { :delete => "/admin/models/cat/23" }.should route_to( :controller => "engine_room/models", :action => "destroy", :modelname => 'cat', :id => "23" )
+    it "should map /admin/model/cat/23 to { :controller => 'engine_room/models', :action => 'destroy', :modelname => 'cat', :id => 23 }" do
+      { :delete => "/admin/model/cat/23" }.should route_to( :controller => "engine_room/models", :action => "destroy", :modelname => 'cat', :id => "23" )
     end
   end
 end

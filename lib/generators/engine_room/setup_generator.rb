@@ -1,3 +1,5 @@
+require 'rails/generators/active_record'
+
 module EngineRoom
   module Generators
     class SetupGenerator < Rails::Generators::Base
@@ -13,11 +15,13 @@ module EngineRoom
 
       # override - is it necessary?
       def self.next_migration_number(dirname)
-        if ActiveRecord::Base.timestamped_migrations
-          Time.new.utc.strftime("%Y%m%d%H%M%S")
-        else
-          "%.3d" % (current_migration_number(dirname) + 1)
-        end
+        ActiveRecord::Generators::Base.next_migration_number(dirname)
+        
+      #  if ActiveRecord::Base.timestamped_migrations
+      #    Time.new.utc.strftime("%Y%m%d%H%M%S")
+      #  else
+      #    "%.3d" % (current_migration_number(dirname) + 1)
+      #  end
       end
       
 
@@ -26,6 +30,11 @@ module EngineRoom
         
         #invoke "devise:install"
         #invoke :devise "User"
+      end
+      
+      def setup
+        migration_template "002_create_sections.rb", "db/migrate/create_sections.rb"
+        migration_template "003_create_fields.rb", "db/migrate/create_fields.rb"
       end
       
     end

@@ -1,0 +1,20 @@
+<h1><%= t('.title') %></h1>
+
+<button class="add"><%= t('.add_section') %></button>
+
+<div class="box">
+	
+	<table>
+		<tr>
+			<th>Section</th>
+			<th>Actions</th>
+		</tr>
+		<% @sections.each do |section| %>
+			<tr>
+				<td><%= link_to section.model_name.capitalize!, { :controller => 'engine_room/sections', :action => :edit, :id => section.id } %></td>
+				<td><%= link_to 'delete', { :controller => 'engine_room/sections', :action => :destroy, :id => section.id } %></td>
+			</tr>
+		<% end %>
+	</table>
+
+</div>
