@@ -17,7 +17,7 @@ module EngineRoom
     
     # GET /sections
     def index
-      @sections = Section.all
+      @sections = Section.order('sort_order ASC')
       # index.html.erb
     end
 

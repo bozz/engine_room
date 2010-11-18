@@ -2,23 +2,17 @@
 
 <h1><%= @model.human_name %></h1>
 
-<% if @error %>
-	<p style="color:red"><%= @error %></p>
-<% else %>
-
-	<%= form_for @element, :url => { :controller => "models", :action => :update } do |f| %>
-		<%= render 'shared/error_messages', :object => f.object %>
-		
-	 	<% @model.columns.each do |column| %>
-			<div class="field">
-				<%= f.label column.name, @model.human_attribute_name(column.name) %>
-				<%= get_form_field_for_column(f, @element, column) %>
-			</div>
-		<% end %>
-		
-	  <div class="actions">
-			<button type="submit">Submit</button>
-	  </div>
+<%= form_for [:engine_room, @element] do |f| %>
+	<%= render 'shared/error_messages', :object => f.object %>
+	
+ 	<% @model.columns.each do |column| %>
+		<div class="field">
+			<%= f.label column.name, @model.human_attribute_name(column.name) %>
+			<%= get_form_field_for_column(f, @element, column) %>
+		</div>
 	<% end %>
 	
+  <div class="actions">
+		<button type="submit">Submit</button>
+  </div>
 <% end %>
