@@ -41,9 +41,9 @@ module EngineRoom
     # POST /section
     def create
       @section = Section.new(params[:section])
-
       if @section.save
-        redirect_to(@section, :notice => 'Section was successfully created.')
+        flash[:notice] = 'Section was successfully created.'
+        redirect_to :action => :index
       else
         render :action => "new"
       end
@@ -51,9 +51,13 @@ module EngineRoom
 
     # PUT /section/1
     def update
+      
+      puts p(params)
+      
       @section = Section.find(params[:id])
       if @section.update_attributes(params[:section])
-        redirect_to(@section, :notice => 'Section was successfully updated.')
+        flash[:notice] = 'Section was successfully updated.'
+        redirect_to :action => :index
       else
         render :action => "edit"
       end
@@ -64,7 +68,8 @@ module EngineRoom
       @section = Section.find(params[:id])
       @section.destroy
 
-      redirect_to(posts_url)
+      flash[:notice] = 'Section was successfully deleted.'
+      redirect_to :action => :index
     end
     
   end

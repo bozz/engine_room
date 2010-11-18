@@ -11,8 +11,8 @@
 		</tr>
 		<% @sections.each do |section| %>
 			<tr>
-				<td><%= link_to section.model_name.capitalize!, { :controller => 'engine_room/sections', :action => :edit, :id => section.id } %></td>
-				<td><%= link_to 'delete', { :controller => 'engine_room/sections', :action => :destroy, :id => section.id } %></td>
+				<td><%= link_to section.model_name.camelize, { :controller => 'engine_room/sections', :action => :edit, :id => section.id } %></td>
+				<td><%= link_to 'delete', { :controller => 'engine_room/sections', :action => :destroy, :id => section.id }, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
 			</tr>
 		<% end %>
 	</table>

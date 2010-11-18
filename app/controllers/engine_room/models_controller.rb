@@ -20,13 +20,25 @@ module EngineRoom
     
     def overview
       @models = []
+      missing_models = []
+      missing_tables = []
       Section.all.each do |section|
         begin
-          @models << get_model(section.model_name)
+          model = get_model(section.model_name)
+          if model.table_exists?
+            @models << model
+          else
+            missing_tables << section.model_name
+          end
         rescue NameError
-          # ignore errors
+          missing_models << section.model_name
         end
       end
+      
+      flash_alert = ""
+      flash_alert += "Table(s) not found: '#{missing_tables.uniq.join("', '")}'. " unless missing_tables.empty?
+      flash_alert += "Model(s) not found: '#{missing_models.uniq.join("', '")}'." unless missing_models.empty?
+      flash[:alert] = flash_alert unless flash_alert.empty?
     end
 
     

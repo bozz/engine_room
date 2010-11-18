@@ -308,6 +308,20 @@ nav div {
 	padding: 10px;
 }
 
+/* Tables */
+
+table th {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#999999');
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+	background: -moz-linear-gradient(top,  #ccc,  #999);
+}
+table th,
+table td {
+	border: 1px solid #bbb;
+	padding: 5px 10px;
+}
+
+
 /* Forms */
 
 #content div.box,
@@ -333,6 +347,10 @@ div.field label {
 	top: 10px;
 	width: 200px;
 }
+div.field select option {
+	font-size: 1em;
+}
+div.field select,
 div.field textarea,
 div.field input {
 	-moz-border-radius:5px;
@@ -340,6 +358,9 @@ div.field input {
 	border: 1px solid #999;
 	margin-right: 5px;
 	padding: 7px 7px 4px;
+}
+div.field select {
+	padding: .5em .3em .3em;
 }
 div.field input[type=text] {
 	width: 96%;

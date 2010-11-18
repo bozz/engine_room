@@ -1,0 +1,15 @@
+<%= form_for @section, :url => { :controller => "engine_room/sections", :action => :update } do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  
+	<div class="field">
+		<%= f.label :model_name %>
+    <%= f.select :model_name, options_for_select(Section.model_names.collect!{ |name| [name.camelize,name] }, @section.model_name), {:include_blank => ''} %>
+  </div>
+	<div class="field">
+		<%= f.label :sort_order %>
+    <%= f.text_field :sort_order %>
+  </div>
+  <div class="actions">
+    <button type="submit">Submit</button>
+  </div>
+<% end %>

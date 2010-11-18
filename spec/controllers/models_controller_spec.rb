@@ -48,10 +48,18 @@ describe EngineRoom::ModelsController do
       it "should be successful" do
         response.should_not be_success
       end
+    end
+    
+    describe "when signed in" do
 
-      #it "should have the right heading" do
-      #  response.should have_selector("h1", :content => "Models")
-      #end
+      before(:each) do
+        sign_in Factory(:user)
+      end
+
+      it "should get redirected to overview when model doesn't exist" do
+        get :index, :modelname => "milk"
+        response.should redirect_to("/admin/models")
+      end
     end
   end
 end
