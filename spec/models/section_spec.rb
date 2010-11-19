@@ -29,6 +29,21 @@ describe Section do
     section.should_not be_valid
   end
   
+  it "should accept 'dog' as valid model name" do
+    # dog is dummy model
+    Section.model_names.include?("dog").should be_true
+  end
+  
+  it "should return model from model_name" do
+    section = Factory(:section)
+    section.model.name.should == section.model_name.camelize
+  end
+  
+  it "should return valid column names" do
+    section = Factory(:section)
+    section.column_names.should == ["id","name","color","description","fleas","created_at","updated_at"]
+  end
+  
   describe "field associations" do
     
     before(:each) do

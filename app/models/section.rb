@@ -22,4 +22,18 @@ class Section < ActiveRecord::Base
   def self.valid_model_name?(name)
     !name.blank? && self.model_names.include?(name.downcase)
   end
+  
+  # returns model corresponding to model_name, or nil if not found
+  def model
+    begin
+      return Object.const_get(model_name.singularize.camelize)
+    rescue NameError
+      return nil
+    end
+  end
+  
+  # returns array of valid column names of associated model
+  def column_names
+    model.column_names
+  end
 end

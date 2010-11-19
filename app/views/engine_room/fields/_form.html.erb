@@ -3,7 +3,7 @@
 <%= form_for [:engine_room, @field] do |f| %>
 	<div class="field">
 		<%= f.label :column %>
-    <%= f.text_field :column %>
+    <%= f.select :column, options_for_select(@field.section.column_names, @field.column), {:include_blank => ''} %>
   </div>
 	<div class="field">
 		<%= f.label :field_type %>
