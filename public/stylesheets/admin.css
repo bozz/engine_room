@@ -334,8 +334,8 @@ table td {
 
 /* Forms */
 
-#content div.box,
-#content form {
+div.box,
+form {
 	background-color: #ddd;
 	border: 1px solid #bbb;
 	-moz-border-radius:5px;

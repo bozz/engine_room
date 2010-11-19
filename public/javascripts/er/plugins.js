@@ -2,8 +2,24 @@
 // remap jQuery to $
 (function($){
 
-
-
+/*	
+	$("a#inline").fancybox({
+		onCleanup: function() {
+			//alert("closed...");
+			//return false;
+		},
+		autoDimensions: false,
+		width: 600,
+		hideOnContentClick: false,
+		hideOnOverlayClick: false,
+		showCloseButton: true
+		//ajax : {
+		//	type : "GET",
+		//	scrolling: 'no'
+		//}
+	});
+*/
+	
 })(window.jQuery);
 
 

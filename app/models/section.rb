@@ -6,9 +6,10 @@ class ValidModelValidator < ActiveModel::EachValidator
 end
 
 class Section < ActiveRecord::Base
-  has_many :fields
-  attr_accessible :model_name, :sort_order
+  has_many :fields, :dependent => :destroy
+  attr_accessible :name, :model_name, :sort_order
   
+  validates :name,        :presence => true
   validates :model_name,  :presence => true, :valid_model => true
   
 

@@ -1,6 +1,7 @@
 class CreateSections < ActiveRecord::Migration
   def self.up
     create_table(:sections) do |t|
+      t.string  :name, :null => false
       t.string  :model_name, :null => false
       t.integer :sort_order
       t.timestamps

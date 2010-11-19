@@ -51,9 +51,6 @@ module EngineRoom
 
     # PUT /section/1
     def update
-      
-      puts p(params)
-      
       @section = Section.find(params[:id])
       if @section.update_attributes(params[:section])
         flash[:notice] = 'Section was successfully updated.'

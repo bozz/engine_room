@@ -9,8 +9,16 @@ Factory.define :user do |user|
 end
 
 Factory.define :section do |section|
+  section.name        "Dogs"
   section.model_name  "dog"
   section.sort_order  1
+end
+
+Factory.define :field do |field|
+  field.column      "name"
+  field.field_type  "text_field"
+  field.sort_order  1
+  field.association :section
 end
 
 Factory.define :dog do |dog|

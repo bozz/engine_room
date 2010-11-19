@@ -12,7 +12,7 @@ describe EngineRoom::SectionsController do
     end
     
     it "should deny access to 'create'" do
-      @attr = { :model_name => "dog" }
+      @attr = { :name => "Dogs", :model_name => "dog" }
       post :create, :section => @attr
       response.should redirect_to(new_er_devise_user_session_path)
     end
@@ -78,7 +78,7 @@ describe EngineRoom::SectionsController do
       end
       
       it "should render the new page" do
-        post :create, :micropost => @attr
+        post :create, :section => @attr
         response.should render_template('engine_room/sections/new')
       end
     end
@@ -86,7 +86,7 @@ describe EngineRoom::SectionsController do
     describe "success" do
 
       before(:each) do
-        @attr = { :model_name => "Dog" }
+        @attr = { :name => "Dogs", :model_name => "Dog" }
       end
 
       it "should create a section" do

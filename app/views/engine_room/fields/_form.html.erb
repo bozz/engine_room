@@ -1,0 +1,20 @@
+ <%= render 'shared/error_messages', :object => @field %>
+
+<%= form_for [:engine_room, @field] do |f| %>
+	<div class="field">
+		<%= f.label :column %>
+    <%= f.text_field :column %>
+  </div>
+	<div class="field">
+		<%= f.label :field_type %>
+    <%= f.select :field_type, options_for_select(Field.field_types, @field.field_type), {:include_blank => ''} %>
+  </div>
+	<div class="field">
+		<%= f.label :sort_order %>
+    <%= f.number_field :sort_order, :min => 1, :max => 100 %>
+  </div>
+  <div class="actions">
+		<%= f.hidden_field :section_id, :value => @section_id %>
+    <button type="submit"><%= @field.id ? "Update" : "Create" %></button>
+  </div>
+<% end %>

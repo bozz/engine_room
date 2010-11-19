@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'webrat'  ## TODO: remove?
   s.add_development_dependency 'rspec-rails', '~> 2.1.0'
   s.add_development_dependency 'factory_girl_rails', '1.0'
+  s.add_development_dependency 'spork'
   s.add_development_dependency 'fuubar'
   s.add_development_dependency 'sqlite3-ruby'
 

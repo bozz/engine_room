@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'settings' => "pages#settings"
     
     resources :sections
+    resources :fields
     
     #devise_for :users, :module => "devise", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :sign_up => 'register' }
     

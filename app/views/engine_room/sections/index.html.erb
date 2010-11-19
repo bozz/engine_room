@@ -7,11 +7,13 @@
 	<table>
 		<tr>
 			<th>Section</th>
+			<th>Model</th>
 			<th>Actions</th>
 		</tr>
 		<% @sections.each do |section| %>
 			<tr>
-				<td><%= link_to section.model_name.camelize, { :controller => 'engine_room/sections', :action => :edit, :id => section.id } %></td>
+				<td><%= link_to section.name, { :controller => 'engine_room/sections', :action => :edit, :id => section.id } %></td>
+				<td><%= section.model_name.camelize %></td>
 				<td><%= link_to 'delete', { :controller => 'engine_room/sections', :action => :destroy, :id => section.id }, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
 			</tr>
 		<% end %>

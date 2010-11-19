@@ -1,3 +1,26 @@
 <h1>Edit Section</h1>
 
 <%= render 'form' %>
+
+<h2>Detail Fields</h2>
+
+<%= link_to "Add Field", new_engine_room_field_path(:section_id => @section.id), :class => "button" %>
+
+<div class="box">
+	<table>
+		<tr>
+			<th>Column</th>
+			<th>Type</th>
+			<th>Sort Order</th>
+			<th>Actions</th>
+		</tr>
+		<% @section.fields.each do |field| %>
+		<tr>
+			<td><%= link_to field.column, edit_engine_room_field_path(field.id, :section_id => @section.id) %></td>
+			<td><%= field.field_type %></td>
+			<td><%= field.sort_order %></td>
+			<td><%= link_to 'delete', engine_room_field_path(field.id, :section_id => @section.id), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
