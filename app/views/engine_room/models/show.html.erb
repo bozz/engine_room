@@ -1,11 +1,2 @@
-<h1><%= @modelname.singularize.camelize %></h1>
-
-<% if @error %>
-	<p style="color:red"><%= @error %></p>
-<% else %>
-
-	<h2><%= @element.title %>
-	<p><%= @element.text %>
-	
-	<p><%= link_to "Back", { :controller => 'models', :action => :index } %></p>
-<% end %>
+<h2><%= @element.title %>
+<p><%= @element.text %>

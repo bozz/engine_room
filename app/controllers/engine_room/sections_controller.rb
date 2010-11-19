@@ -4,6 +4,8 @@ module EngineRoom
     
     layout 'engine_room'
     
+    add_crumb "Sections", '/admin/sections'
+    
     unloadable
     
     #def overview
@@ -30,12 +32,13 @@ module EngineRoom
     # GET /posts/new
     def new
       @section = Section.new
-      # new.html.erb
+      add_crumb 'Create New Section'
     end
 
     # GET /section/1/edit
     def edit
       @section = Section.find(params[:id])
+      add_crumb(@section.name, edit_engine_room_section_path(params[:id]))
     end
 
     # POST /section
@@ -45,6 +48,7 @@ module EngineRoom
         flash[:notice] = 'Section was successfully created.'
         redirect_to :action => :index
       else
+        add_crumb('Create New Section', new_engine_room_section_path)
         render :action => "new"
       end
     end
@@ -56,6 +60,7 @@ module EngineRoom
         flash[:notice] = 'Section was successfully updated.'
         redirect_to :action => :index
       else
+        add_crumb(@section.name, edit_engine_room_section_path(params[:id]))
         render :action => "edit"
       end
     end

@@ -3,7 +3,7 @@
 <%= form_for [:engine_room, @field] do |f| %>
 	<div class="field">
 		<%= f.label :column %>
-    <%= f.select :column, options_for_select(@field.section.column_names, @field.column), {:include_blank => ''} %>
+    <%= f.select :column, options_for_select(@section.column_names, @field.column), {:include_blank => ''} %>
   </div>
 	<div class="field">
 		<%= f.label :field_type %>
@@ -14,7 +14,7 @@
     <%= f.number_field :sort_order, :min => 1, :max => 100 %>
   </div>
   <div class="actions">
-		<%= f.hidden_field :section_id, :value => @section_id %>
+		<%= f.hidden_field :section_id, :value => @section.id %>
     <button type="submit"><%= @field.id ? "Update" : "Create" %></button>
   </div>
 <% end %>

@@ -112,7 +112,7 @@ button.add {
 #flash_notice {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
-	margin-top: 10px;
+	margin: 10px 0;
 	padding: 10px 10px 5px 40px;
 	width: 400px;
 }

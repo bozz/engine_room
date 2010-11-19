@@ -1,7 +1,14 @@
-<h1><%= t '.title' %></h1>
-
-<ul>
-<% @models.each do |model| %>
-	<li><%= link_to model, { :controller => 'models', :action => :index, :modelname => model }%>: <%= model.column_names %></li>
-<% end %>
-</ul>
+<div class="box">
+	<table>
+		<tr>
+			<th>Section</th>
+			<th>Columns</th>
+		</tr>
+	<% @models.each do |model| %>
+		<tr>
+			<td><%= link_to model, { :controller => 'models', :action => :index, :modelname => model }%></td>
+			<td><%= model.column_names %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>

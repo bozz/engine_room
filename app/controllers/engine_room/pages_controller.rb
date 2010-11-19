@@ -3,7 +3,7 @@ module EngineRoom
     before_filter :authenticate_er_devise_user!
     
     layout 'engine_room'
-    
+
     unloadable
     
     def dashboard

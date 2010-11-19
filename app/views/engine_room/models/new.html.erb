@@ -1,4 +1,4 @@
-<%= form_for [:engine_room, @element] do |f| %>
+<%= form_for @element, {:controller => 'engine_room/models', :action => 'create', :modelname => @modelname} do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 	
  	<% @model.columns.each do |column| %>
@@ -9,6 +9,6 @@
 	<% end %>
 	
   <div class="actions">
-		<button type="submit">Submit</button>
+		<button type="submit">Create</button>
   </div>
 <% end %>

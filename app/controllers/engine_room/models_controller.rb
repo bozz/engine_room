@@ -5,6 +5,8 @@ module EngineRoom
     
     layout 'engine_room'
     
+    add_crumb "Pages", '/admin/models'
+    
     unloadable
     
     def check_model_name
@@ -44,10 +46,17 @@ module EngineRoom
     
     def index
       @elements = @model.find(:all)
+      add_crumb @modelname, {:controller => 'engine_room/models', :action => :index, :modelname => @modelname}
     end
     
     def show
       @element = @model.find(params[:id])
+    end
+    
+    def new
+      @element = @model.new
+      add_crumb @modelname, {:controller => 'engine_room/models', :action => :index, :modelname => @modelname}
+      add_crumb "Create New #{@modelname}"
     end
     
     def edit

@@ -4,6 +4,8 @@ module EngineRoom
     
     layout 'engine_room'
     
+    add_crumb "Sections", '/admin/sections'
+    
     unloadable
     
     # GET /sections
@@ -21,23 +23,28 @@ module EngineRoom
     # GET /fields/new
     def new
       @field = Field.new
-      @section_id = params[:section_id]
-      # new.html.erb
+      @section = Section.find(params[:section_id])
+      
+      add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+      add_crumb 'New Field'
     end
 
     # GET /fields/1/edit
     def edit
       @field = Field.find(params[:id])
-      @section_id = params[:section_id]
+      @section = Section.find(params[:section_id])
+      
+      add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+      add_crumb('Edit Field', edit_engine_room_field_path(@field.id))
     end
 
     # POST /fields
     def create
       @field = Field.new(params[:field])
-      @section_id = params[:field][:section_id]
+      @section = Section.find(params[:field][:section_id])
       if @field.save
         flash[:notice] = 'Field was successfully created.'
-        redirect_to edit_engine_room_section_url(@section_id)
+        redirect_to edit_engine_room_section_url(@section.id)
       else
         render :action => "new"
       end
@@ -46,10 +53,10 @@ module EngineRoom
     # PUT /fields/1
     def update
       @field = Field.find(params[:id])
-      @section_id = params[:field][:section_id]
+      @section = Section.find(params[:field][:section_id])
       if @field.update_attributes(params[:field])
         flash[:notice] = 'Field was successfully updated.'
-        redirect_to edit_engine_room_section_url(@section_id)
+        redirect_to edit_engine_room_section_url(@section.id)
       else
         render :action => "edit"
       end
