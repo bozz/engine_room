@@ -5,7 +5,7 @@ module EngineRoom
     
     layout 'engine_room'
     
-    add_crumb "Pages", '/admin/models'
+    add_crumb "Sections", '/admin/models'
     
     unloadable
     
@@ -21,6 +21,11 @@ module EngineRoom
     
     
     def overview
+      @sections = Section.all
+    end
+
+    
+    def overview2
       @models = []
       missing_models = []
       missing_tables = []

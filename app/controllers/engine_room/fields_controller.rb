@@ -35,13 +35,13 @@ module EngineRoom
       @section = Section.find(params[:section_id])
       
       add_crumb(@section.name, edit_engine_room_section_path(@section.id))
-      add_crumb('Edit Field', edit_engine_room_field_path(@field.id))
+      add_crumb('Edit Field', edit_engine_room_section_field_path(@section, @field.id))
     end
 
     # POST /fields
     def create
       @field = Field.new(params[:field])
-      @section = Section.find(params[:field][:section_id])
+      @section = Section.find(params[:section_id])
       if @field.save
         flash[:notice] = 'Field was successfully created.'
         redirect_to edit_engine_room_section_url(@section.id)
@@ -53,7 +53,7 @@ module EngineRoom
     # PUT /fields/1
     def update
       @field = Field.find(params[:id])
-      @section = Section.find(params[:field][:section_id])
+      @section = Section.find(params[:section_id])
       if @field.update_attributes(params[:field])
         flash[:notice] = 'Field was successfully updated.'
         redirect_to edit_engine_room_section_url(@section.id)

@@ -12,6 +12,7 @@ class Section < ActiveRecord::Base
   validates :name,        :presence => true
   validates :model_name,  :presence => true, :valid_model => true
   
+  default_scope :order => 'sections.sort_order ASC'
 
   # returns array of model names found in app/models/
   def self.model_names

@@ -17,19 +17,19 @@ module EngineRoom
       #@models = ActiveRecord::Base.send(:descendants)
     #end
     
-    # GET /sections
+    # GET /section_configs
     def index
       @sections = Section.order('sort_order ASC')
       # index.html.erb
     end
 
-    # GET /section/1
+    # GET /section_config/1
     def show
       @section = Section.find(params[:id])
       # show.html.erb
     end
 
-    # GET /posts/new
+    # GET /section_config/new
     def new
       @section = Section.new
       add_crumb 'Create New Section'

@@ -2,12 +2,12 @@
 	<table>
 		<tr>
 			<th>Section</th>
-			<th>Columns</th>
+			<th>Sort Order</th>
 		</tr>
-	<% @models.each do |model| %>
+	<% @sections.each do |section| %>
 		<tr>
-			<td><%= link_to model, { :controller => 'models', :action => :index, :modelname => model }%></td>
-			<td><%= model.column_names %></td>
+			<td><%= link_to section.name, { :controller => 'models', :action => :index, :modelname => section.model_name }%></td>
+			<td><%= section.sort_order %></td>
 		</tr>
 	<% end %>
 	</table>

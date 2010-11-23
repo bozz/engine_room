@@ -12,15 +12,16 @@ Rails.application.routes.draw do
     
     get 'settings' => "pages#settings"
     
-    resources :sections
-    resources :fields
+    resources :sections do
+      resources :fields
+    end
     
     #devise_for :users, :module => "devise", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :sign_up => 'register' }
     
     # workaround for models resource for including dynamic segment
     # resources :models
     controller :models do
-      get     'models'                      => :overview
+      get     'models'                     => :overview
       get     'model/:modelname'           => :index
       get     'model/:modelname/new'       => :new
       post    'model/:modelname'           => :create

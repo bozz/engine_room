@@ -1,6 +1,6 @@
  <%= render 'shared/error_messages', :object => @field %>
 
-<%= form_for [:engine_room, @field] do |f| %>
+<%= form_for [:engine_room, @section, @field] do |f| %>
 	<div class="field">
 		<%= f.label :column %>
     <%= f.select :column, options_for_select(@section.column_names, @field.column), {:include_blank => ''} %>

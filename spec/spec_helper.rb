@@ -33,7 +33,6 @@ Spork.prefork do
   
     config.use_transactional_fixtures = true
   end
-
 end
 
 # Run any available migration
