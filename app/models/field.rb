@@ -25,6 +25,7 @@ class Field < ActiveRecord::Base
       'text_field',
       'email_field',
       'number_field',
+      'date_field',
       'text_area',
       'boolean',
       'enum'

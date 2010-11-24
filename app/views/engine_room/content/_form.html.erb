@@ -3,15 +3,7 @@
 <%= form_for @element, :url => {:controller => 'engine_room/content', :section_name => @section.name, :action => @element.id ? :update : :create} do |f| %>
 
   <% @section.detail_fields.each do |field| %>
-
-    <div class="field">
-    	<%= f.label field.column, field.column.humanize %>
-      <%= f.text_field field.column %>
-      <% unless field.help.blank? %>
-        <i><%= field.help %></i>
-      <% end %>
-    </div>
-
+   <%= field_to_form(field, @element, f) %>
   <% end %>
 
   <div class="actions">

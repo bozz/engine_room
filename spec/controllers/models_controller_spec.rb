@@ -32,7 +32,7 @@ describe EngineRoom::ModelsController do
       end
 
       it "should have the right heading" do
-        response.should have_selector("h1", :content => "Sections")
+        response.should have_selector("h1", :content => "Models")
       end
     end
   end

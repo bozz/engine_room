@@ -5,7 +5,7 @@ module EngineRoom
     
     layout 'engine_room'
     
-    add_crumb "Sections", '/admin/models'
+    add_crumb "Models", '/admin/models'
     
     unloadable
     
