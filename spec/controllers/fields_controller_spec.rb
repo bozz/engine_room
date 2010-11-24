@@ -60,7 +60,7 @@ describe EngineRoom::FieldsController do
 
       before(:each) do
         @section = Factory(:section)
-        @attr = { :column => "name", :field_type => "text_field", :section_id => @section.id }
+        @attr = { :column => "name", :field_type => "text_field", :display_type => "detail", :section_id => @section.id }
       end
 
       it "should create a field" do

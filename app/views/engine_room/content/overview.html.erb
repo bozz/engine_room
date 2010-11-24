@@ -1,0 +1,14 @@
+<div class="box">
+	<table>
+		<tr>
+			<th>Section</th>
+			<th>Sort Order</th>
+		</tr>
+	<% @sections.each do |section| %>
+		<tr>
+			<td><%= link_to section.name.titleize, { :controller => 'content', :action => :index, :section_name => section.name }%></td>
+			<td><%= section.sort_order %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>

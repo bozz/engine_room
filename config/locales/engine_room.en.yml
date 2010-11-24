@@ -4,8 +4,9 @@ en:
   preview: "open preview"
   nav:
     dashboard: "Dashboard"
-    models: "Pages"
-    settings: "Sections"
+    content: "Content"
+    sections: "Sections"
+    models: "Models"
     user: "Users"
   engine_room: 
     pages:

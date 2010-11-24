@@ -1,6 +1,10 @@
  <%= render 'shared/error_messages', :object => @field %>
 
 <%= form_for [:engine_room, @section, @field] do |f| %>
+  <div class="field">
+		<%= f.label :display_type %>
+    <%= f.select :display_type, options_for_select(["detail", "overview"], @field.display_type) %>
+  </div>
 	<div class="field">
 		<%= f.label :column %>
     <%= f.select :column, options_for_select(@section.column_names, @field.column), {:include_blank => ''} %>
@@ -10,6 +14,18 @@
     <%= f.select :field_type, options_for_select(Field.field_types, @field.field_type), {:include_blank => ''} %>
   </div>
 	<div class="field">
+		<%= f.label :overview_link, "Overview link?" %>
+    <%= f.check_box :overview_link %>
+  </div>
+  <div class="field">
+		<%= f.label :help, "Help Text" %>
+    <%= f.text_field :help %>
+  </div>
+	<div class="field">
+		<%= f.label :options %>
+    <%= f.text_area :options, :rows => 3 %>
+  </div>
+  <div class="field">
 		<%= f.label :sort_order %>
     <%= f.number_field :sort_order, :min => 1, :max => 100 %>
   </div>

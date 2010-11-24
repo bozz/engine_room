@@ -5,7 +5,11 @@ describe Field do
 
   before(:each) do
     @section = Factory(:section)
-    @attr = { :column => "name", :field_type => "text_field" }
+    @attr = { 
+      :column => "name", 
+      :field_type => "text_field", 
+      :display_type => "detail"
+    }
   end
 
   it "should create a new instance given valid attributes" do
@@ -48,6 +52,23 @@ describe Field do
     
     it "should accept valid field_types" do
       @section.fields.build(@attr.merge(:field_type => "boolean")).should be_valid
+    end
+  end
+
+  describe "options hash" do
+
+    before(:each) do
+      @field = @section.fields.create!(@attr)
+    end
+
+    it "should respond to is_overview_link" do
+      @field.should respond_to(:overview_link)
+    end
+
+    it "should set and retrieve value through is_overview_link" do
+      @field.overview_link = true
+      @field.save
+      @field.overview_link.should be_true
     end
   end
 end

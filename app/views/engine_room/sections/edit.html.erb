@@ -12,7 +12,28 @@
 			<th>Sort Order</th>
 			<th>Actions</th>
 		</tr>
-		<% @section.fields.each do |field| %>
+		<% @section.detail_fields.each do |field| %>
+		<tr>
+			<td><%= link_to field.column, edit_engine_room_section_field_path(@section, field) %></td>
+			<td><%= field.field_type %></td>
+			<td><%= field.sort_order %></td>
+			<td><%= link_to 'delete', engine_room_section_field_path(@section, field), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+
+<h2>Overview Fields</h2>
+
+<div class="box">
+	<table>
+		<tr>
+			<th>Column</th>
+			<th>Type</th>
+			<th>Sort Order</th>
+			<th>Actions</th>
+		</tr>
+		<% @section.overview_fields.each do |field| %>
 		<tr>
 			<td><%= link_to field.column, edit_engine_room_section_field_path(@section, field) %></td>
 			<td><%= field.field_type %></td>

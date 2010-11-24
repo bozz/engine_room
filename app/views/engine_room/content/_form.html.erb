@@ -1,0 +1,21 @@
+<%= render 'shared/error_messages', :object => @element %>
+
+<%= form_for @element, :url => {:controller => 'engine_room/content', :section_name => @section.name, :action => @element.id ? :update : :create} do |f| %>
+
+  <% @section.detail_fields.each do |field| %>
+
+    <div class="field">
+    	<%= f.label field.column, field.column.humanize %>
+      <%= f.text_field field.column %>
+      <% unless field.help.blank? %>
+        <i><%= field.help %></i>
+      <% end %>
+    </div>
+
+  <% end %>
+
+  <div class="actions">
+    <button type="submit"><%= @element.id ? "Update" : "Create" %></button>
+  </div>
+
+<% end %>

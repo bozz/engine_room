@@ -15,9 +15,11 @@ Factory.define :section do |section|
 end
 
 Factory.define :field do |field|
-  field.column      "name"
-  field.field_type  "text_field"
-  field.sort_order  1
+  field.column        "name"
+  field.field_type    "text_field"
+  field.sort_order    1
+  field.display_type  "detail"
+  field.help          "please fill in field."
   field.association :section
 end
 

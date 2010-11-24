@@ -24,6 +24,10 @@ class Section < ActiveRecord::Base
     !name.blank? && self.model_names.include?(name.downcase)
   end
   
+  def name=(name_string)
+    write_attribute(:name, name_string.gsub(/ /, "_").underscore)
+  end
+
   # returns model corresponding to model_name, or nil if not found
   def model
     begin
@@ -31,6 +35,14 @@ class Section < ActiveRecord::Base
     rescue NameError
       return nil
     end
+  end
+
+  def detail_fields
+    self.fields.where(:display_type => 'detail')
+  end
+
+  def overview_fields
+    self.fields.where(:display_type => 'overview')
   end
   
   # returns array of valid column names of associated model
