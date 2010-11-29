@@ -1,0 +1,47 @@
+<%= render 'shared/error_messages', :object => @user %>
+
+<% 
+  form_path = (["edit_current_user","update_current_user"].include?(params[:action])) ? engine_room_current_user_path : nil
+%>
+
+<%= form_for [:engine_room, @user], :url => form_path, :html => { :id => "edit_user" } do |f| %>
+	<div class="field">
+		<%= f.label :username %>
+  	<%= f.text_field :username %>
+	</div>
+
+  <div class="field">
+		<%= f.label :email %>
+  	<%= f.text_field :email %>
+	</div>
+
+  <% if current_er_devise_user.is_admin? %>
+    <div class="field">
+      <%= f.label :is_admin, "Is admin?" %>
+      <%= f.check_box :is_admin %>
+    </div>
+  <% end %>
+
+  <div class="field">
+		<%= f.label :password %>
+  	<%= f.password_field :password %>
+		<i>leave blank if you don't want to change it</i>
+	</div>
+
+  <div class="field">
+		<%= f.label :password_confirmation %>
+  	<%= f.password_field :password_confirmation %>
+	</div>
+
+  <% if(@user.id) %>
+    <div class="field">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password %>
+      <i>we need your current password to confirm your changes</i>
+    </div>
+  <% end %>
+
+  <div class="actions">
+		<button type="submit"><%= t('.submit_button') %></button>
+	</div>
+<% end %>

@@ -56,7 +56,7 @@
 
 		<header id="header">
 			<div class="logo">engine_room</div>
-			<div class="user-logout"><%= link_to current_er_devise_user.username, edit_er_devise_user_registration_path %> | <%= link_to t(:log_out), destroy_er_devise_user_session_path %></div>
+			<div class="user-logout"><%= link_to current_er_devise_user.username, engine_room_current_user_path %> | <%= link_to t(:log_out), destroy_er_devise_user_session_path %></div>
 			<div class="preview"><a href="/" target="_blank"><%= t(:preview) %></a></div>
 		</header>
 		
@@ -67,7 +67,7 @@
 					<li><%= link_to t('nav.content'), engine_room_content_path %></li>
 					<li><%= link_to t('nav.sections'), engine_room_sections_path %></li>
 					<li><%= link_to t('nav.models'), engine_room_models_path %></li>
-					<li><%= link_to t('nav.user'), '#' %></li>
+					<li><%= link_to t('nav.user'), engine_room_users_path %></li>
 				</ul>
 			</div>
 		</nav>

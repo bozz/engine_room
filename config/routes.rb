@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
     get 'settings' => "pages#settings"
 
+    get 'users/current' => "users#edit_current_user", :as => :current_user
+    put 'users/current' => "users#update_current_user", :as => :current_user
+    resources :users
+
     resources :sections do
       resources :fields
     end

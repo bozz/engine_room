@@ -1,0 +1,24 @@
+<%= link_to "Create New User", new_engine_room_user_path, :class => "button" %>
+
+<div class="box">
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Admin?</th>
+			<th>Last SignedIn</th>
+			<th>Actions</th>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= link_to user.username, edit_engine_room_user_path(user) %></td>
+      <td><%= user.email %></td>
+      <td><%= user.is_admin %></td>
+      <td><%= user.last_sign_in_at %></td>
+      <td><%= link_to "delete", engine_room_user_path(user), :confirm => "Are you sure?", :method => :delete %></td>
+    </tr>
+    <% end %>
+	</table>
+</div>

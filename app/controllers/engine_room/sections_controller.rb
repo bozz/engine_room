@@ -49,7 +49,7 @@ module EngineRoom
         redirect_to :action => :index
       else
         add_crumb('Create New Section', new_engine_room_section_path)
-        render :action => "new"
+        render :action => :new
       end
     end
 
@@ -61,7 +61,7 @@ module EngineRoom
         redirect_to :action => :index
       else
         add_crumb(@section.name, edit_engine_room_section_path(params[:id]))
-        render :action => "edit"
+        render :action => :edit
       end
     end
 

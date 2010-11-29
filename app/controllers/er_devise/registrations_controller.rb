@@ -3,5 +3,6 @@ module ErDevise
     before_filter :authenticate_er_devise_user!
     layout 'engine_room'
     prepend_view_path(__FILE__ + "../../views")
+
   end
 end

@@ -4,6 +4,16 @@ body {
 	font-size: 14px;
 }
 
+a:link,
+a:visited {
+	color: #0077ff;
+	text-decoration: underline;
+}
+a:hover,
+a:active {
+	color: #000;
+}
+
 #wrapper {
 	margin: 120px auto 0;
 	width: 420px;
@@ -50,30 +60,38 @@ button:disabled {
 	background:rgba(220,220,220,1);
 }
 
+/* Flash and Error Messages */
+
+#error_explanation,
+#flash_alert,
+#flash_error,
+#flash_notice {
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	margin: 10px 0;
+	padding: 10px 10px 5px 40px;
+	width: 367px;
+}
+
+#error_explanation,
+#flash_error,
+#flash_alert {
+	background: #FFD6D6 url(../images/er/cancel.png) no-repeat 10px 8px;
+	border: 1px solid #FF8080;
+	color: #E3302C;
+}
+#flash_notice {
+	background: #D4F5A3 url(../images/er/accept.png) no-repeat 10px 8px;
+	border: 1px solid #6EB800;
+	color: #508600;
+}
 
 
 #content h2 {
 	color:#0099FF;
-	font-size: 1.5em;
+	font-size: 1.9em;
 	font-weight: normal;
-	text-align: center;
 }
-
-#flash_alert,
-#flash_notice {
-	margin-top: 10px;
-	padding: 5px;
-}
-
-#flash_alert {
-	background-color: #CC3333;
-	color: white;
-}
-#flash_notice {
-	background-color: #488E48;
-	color: white;
-}
-
 #content label {
 	color: #444;
 	margin: 3px 0;

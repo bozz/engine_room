@@ -1,0 +1,7 @@
+<%= render 'form' %>
+
+<h2><%= t('.cancel_account') %></h2>
+
+<div class="box">
+	<p>Unhappy? <%= link_to "Cancel my account", engine_room_user_path(@user), :confirm => "Are you sure?", :method => :delete %>.</p>
+</div>
