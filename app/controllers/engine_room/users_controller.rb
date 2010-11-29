@@ -1,7 +1,7 @@
 module EngineRoom
   class UsersController < ApplicationController
     before_filter :authenticate_er_devise_user!
-    before_filter :authorize, :except => [:edit_current_user, :update_current_user]
+    before_filter :authorize, :except => [:edit_current_user, :update_current_user, :destroy_current_user]
 
     layout 'engine_room'
 
@@ -58,6 +58,13 @@ module EngineRoom
 
       flash[:notice] = 'User was successfully deleted.'
       redirect_to :action => :index
+    end
+
+    def destroy_current_user
+      @user = current_user
+      @user.destroy
+
+      redirect_to destroy_er_devise_user_session_url
     end
 
     private

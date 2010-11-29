@@ -2,6 +2,10 @@
 
 <h2><%= t('.cancel_account') %></h2>
 
+<% 
+  delete_path = (["edit_current_user","update_current_user"].include?(params[:action])) ? engine_room_current_user_path : engine_room_user_path(@user)
+%>
+
 <div class="box">
-	<p>Unhappy? <%= link_to "Cancel my account", engine_room_user_path(@user), :confirm => "Are you sure?", :method => :delete %>.</p>
+  <p>Unhappy? <%= link_to "Cancel my account", delete_path, :confirm => "Are you sure?", :method => :delete %>.</p>
 </div>
