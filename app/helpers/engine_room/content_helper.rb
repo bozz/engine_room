@@ -1,6 +1,12 @@
 module EngineRoom
   module ContentHelper
   
+    def sortable(column)
+      css_class = column == sort_column ? "current #{sort_direction}" : nil
+      direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+      link_to column.titleize, {:sort => column, :direction => direction}, {:class => css_class}
+    end
+
     def field_to_form(field, element, form)
 
       html = form.label field.column, field.column.humanize

@@ -5,7 +5,7 @@
   <table>
     <tr>
       <% @section.overview_fields.each do |field| %>
-      <th><%= field.column %></th>
+        <th><%= sortable field.column %></th>
       <% end %>
       <th>actions</th>
     </tr>
@@ -15,12 +15,15 @@
         <% if field.overview_link %>
           <td><%= link_to element[field.column], {:controller => 'engine_room/content', :section_name => @section.name, :id => element.id, :action => :edit} %></td>
         <% else %>
-          <td><%= element[field.column].class %></td>
+          <td><%= element[field.column] %></td>
         <% end %>
       <% end %>
       <td><%= link_to "delete", {:controller => 'engine_room/content', :section_name => @section.name, :id => element.id, :action => :destroy}, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
     </tr>
     <% end %>
   </table>
+
+  <br />
+  <%= will_paginate @elements %>
 
 </div>

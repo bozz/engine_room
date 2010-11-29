@@ -7,6 +7,8 @@ module EngineRoom
     add_crumb "Content", '/admin/content'
     before_filter :init_section, :except => [:overview]
 
+    helper_method :sort_column, :sort_direction
+
     unloadable
     
     def init_section
@@ -25,7 +27,7 @@ module EngineRoom
     end
 
     def index 
-      @elements = @model.all
+      @elements = @model.order(sort_column + " " + sort_direction).paginate :page => params[:page], :per_page => 20
     end
     
     def new
@@ -72,6 +74,15 @@ module EngineRoom
 
       def get_model model_name
         model = Object.const_get(model_name.singularize.camelize)
+      end
+
+      def sort_column
+        #params[:sort] || "id"
+        @model.column_names.include?(params[:sort]) ? params[:sort] : "id"
+      end
+
+      def sort_direction
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
       end
   end
 end

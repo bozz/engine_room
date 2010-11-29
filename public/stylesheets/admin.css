@@ -330,6 +330,17 @@ table td {
 	border: 1px solid #bbb;
 	padding: 5px 10px;
 }
+table th .current {
+  padding-right: 20px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+table th .asc {
+  background-image: url(../images/er/up_arrow.png);
+}
+table th .desc {
+  background-image: url(../images/er/down_arrow.png);
+}
 
 
 /* Forms */
