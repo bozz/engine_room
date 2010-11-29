@@ -65,9 +65,9 @@
 				<ul>
 					<li><%= link_to t('nav.dashboard'), engine_room_root_path %></li>
 					<li><%= link_to t('nav.content'), engine_room_content_path %></li>
-					<li><%= link_to t('nav.sections'), engine_room_sections_path %></li>
-					<li><%= link_to t('nav.models'), engine_room_models_path %></li>
-					<li><%= link_to t('nav.user'), engine_room_users_path %></li>
+          <% if authorized? %><li><%= link_to t('nav.sections'), engine_room_sections_path %></li><% end %>
+					<% if authorized? %><li><%= link_to t('nav.models'), engine_room_models_path %></li><% end %>
+					<% if authorized? %><li><%= link_to t('nav.user'), engine_room_users_path %></li><% end %>
 				</ul>
 			</div>
 		</nav>

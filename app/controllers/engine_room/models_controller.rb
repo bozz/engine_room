@@ -1,6 +1,7 @@
 module EngineRoom
   class ModelsController < ApplicationController
     before_filter :authenticate_er_devise_user!
+    before_filter :authorize
     before_filter :check_model_name, :except => [:overview]
     
     layout 'engine_room'

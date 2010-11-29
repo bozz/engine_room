@@ -1,6 +1,7 @@
 module EngineRoom
   class SectionsController < ApplicationController
     before_filter :authenticate_er_devise_user!
+    before_filter :authorize
     
     layout 'engine_room'
     

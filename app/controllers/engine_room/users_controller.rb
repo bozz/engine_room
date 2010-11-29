@@ -1,6 +1,7 @@
 module EngineRoom
   class UsersController < ApplicationController
     before_filter :authenticate_er_devise_user!
+    before_filter :authorize, :except => [:edit_current_user, :update_current_user]
 
     layout 'engine_room'
 
@@ -37,7 +38,7 @@ module EngineRoom
     end
 
     def edit_current_user
-      @user = current_er_devise_user
+      @user = current_user
       render :edit
     end
 
@@ -47,7 +48,7 @@ module EngineRoom
     end
 
     def update_current_user
-      @user = current_er_devise_user
+      @user = current_user
       update_user
     end
 
@@ -62,7 +63,7 @@ module EngineRoom
     private
 
       def update_user
-        if @user.update_with_admin_check(params[:user], current_er_devise_user.is_admin?)
+        if @user.update_with_admin_check(params[:user], current_user.is_admin?)
           flash[:notice] = 'User was successfully updated.'
           redirect_to :action => params[:action]=="update" ? :index : :edit_current_user
         else
