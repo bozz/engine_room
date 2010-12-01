@@ -1,11 +1,12 @@
 module EngineRoom
   module ContentHelper
-  
+
     def sortable(column)
       css_class = column == sort_column ? "current #{sort_direction}" : nil
       direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
       link_to column.titleize, {:sort => column, :direction => direction}, {:class => css_class}
     end
+
 
     def field_to_form(field, element, form)
 
@@ -30,14 +31,32 @@ module EngineRoom
           html += form.check_box field.column
         when "enum"
           html += form.select field.column
-      end 
-      
+        when "belongs_to"
+          html += form.select field.column, options_for_belongs_to(field, element)
+      end
+
       unless field.help.blank?
         html += content_tag(:i, field.help)
       end
 
       return content_tag(:div, html, :class => "field")
     end
-  
+
+    private
+
+      def options_for_belongs_to(field, element)
+
+        target_class_name = field.column.match(/(.*)_id$/) ? $1 : ""
+
+        element.class.reflect_on_all_associations(:belongs_to).each do |assoc|
+          if assoc.name.to_s == target_class_name
+            model = Object.const_get(target_class_name.singularize.camelize)
+            return options_for_select(model.order("#{field.target_display_column}").collect {|r| [r[field.target_display_column], r.id] }, element[field.column])
+          end
+        end
+
+        return options_for_select([])
+      end
+
   end
 end

@@ -1,13 +1,13 @@
 module EngineRoom
   class FieldsController < ApplicationController
     before_filter :authenticate_er_devise_user!
-    
+
     layout 'engine_room'
-    
+
     add_crumb "Sections", '/admin/sections'
-    
+
     unloadable
-    
+
     # GET /sections
     def index
       @fields = Field.all
@@ -24,7 +24,7 @@ module EngineRoom
     def new
       @field = Field.new
       @section = Section.find(params[:section_id])
-      
+
       add_crumb(@section.name, edit_engine_room_section_path(@section.id))
       add_crumb 'New Field'
     end
@@ -33,7 +33,7 @@ module EngineRoom
     def edit
       @field = Field.find(params[:id])
       @section = Section.find(params[:section_id])
-      
+
       add_crumb(@section.name, edit_engine_room_section_path(@section.id))
       add_crumb('Edit Field', edit_engine_room_section_field_path(@section, @field.id))
     end
@@ -46,7 +46,7 @@ module EngineRoom
         flash[:notice] = 'Field was successfully created.'
         redirect_to edit_engine_room_section_url(@section.id)
       else
-        render :action => "new"
+        render :action => :new
       end
     end
 
@@ -54,11 +54,18 @@ module EngineRoom
     def update
       @field = Field.find(params[:id])
       @section = Section.find(params[:section_id])
+
+      if(params[:s_action]=='reload')
+        return reload_edit
+      end
+
+      @field.options = nil # remove all old options
       if @field.update_attributes(params[:field])
         flash[:notice] = 'Field was successfully updated.'
         redirect_to edit_engine_room_section_url(@section.id)
       else
-        render :action => "edit"
+        #render :action => :edit
+        reload_edit
       end
     end
 
@@ -68,10 +75,21 @@ module EngineRoom
       @field.destroy
 
       flash[:notice] = 'Field was successfully deleted.'
-      
+
       section_id = params[:section_id]
       redirect_to edit_engine_room_section_url(section_id)
     end
-    
+
+    private
+
+      def reload_edit
+        @field.attributes = params[:field]
+
+        add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+        add_crumb('Edit Field', edit_engine_room_section_field_path(@section, @field.id))
+
+        render :action => :edit
+      end
+
   end
 end
