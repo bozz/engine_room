@@ -2,7 +2,7 @@ require 'rails/generators/active_record'
 
 module EngineRoom
   module Generators
-    class SetupGenerator < Rails::Generators::Base
+    class CreateImageGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
 
       def self.source_root
@@ -10,20 +10,16 @@ module EngineRoom
       end
 
       def doit
-        puts "generating setup..."
+        puts "generating image model..."
       end
 
       def self.next_migration_number(dirname)
         ActiveRecord::Generators::Base.next_migration_number(dirname)
       end
 
-      def devise
-        migration_template "001_devise_create_users.rb", "db/migrate/devise_create_users.rb"
-      end
-
-      def setup
-        migration_template "002_create_sections.rb", "db/migrate/create_sections.rb"
-        migration_template "003_create_fields.rb", "db/migrate/create_fields.rb"
+      def copy_files
+        migration_template "004_create_images.rb", "db/migrate/create_images.rb"
+        copy_file "image.rb", "app/models/image.rb"
       end
     end
   end

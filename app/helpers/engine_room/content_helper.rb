@@ -33,6 +33,8 @@ module EngineRoom
           html += form.select field.column
         when "belongs_to"
           html += form.select field.column, options_for_belongs_to(field, element)
+        when "image_field"
+          html += form.file_field :image
       end
 
       unless field.help.blank?
@@ -40,6 +42,16 @@ module EngineRoom
       end
 
       return content_tag(:div, html, :class => "field")
+    end
+
+    def has_many_elements(element, target_model)
+      element.class.reflect_on_all_associations(:has_many).each do |assoc|
+        if assoc.name.to_s == target_model.downcase.pluralize
+          model = Object.const_get(target_model.singularize.camelize)
+          return element.send(target_model.downcase.pluralize)
+        end
+      end
+      return []
     end
 
     private

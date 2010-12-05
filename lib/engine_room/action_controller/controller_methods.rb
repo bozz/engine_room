@@ -19,8 +19,3 @@ module EngineRoom::ControllerMethods
 end
 
 ActionController::Base.send :include, EngineRoom::ControllerMethods
-
-
-require 'crummy'
-ActionController::Base.send :include, Crummy::ControllerMethods
-

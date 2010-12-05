@@ -15,8 +15,8 @@
       <td><%= user.id %></td>
       <td><%= link_to user.username, edit_engine_room_user_path(user) %></td>
       <td><%= user.email %></td>
-      <td><%= user.is_admin %></td>
-      <td><%= user.last_sign_in_at %></td>
+      <td><%= user.is_admin==1 ? "yes" : "" %></td>
+      <td><%= user.last_sign_in_at.strftime("%b %d, %Y - %H:%M") %></td>
       <td><%= link_to "delete", engine_room_user_path(user), :confirm => "Are you sure?", :method => :delete %></td>
     </tr>
     <% end %>

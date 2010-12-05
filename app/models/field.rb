@@ -27,7 +27,9 @@ class Field < ActiveRecord::Base
     'text_area' => [],
     'boolean' => [],
     'enum' => ['enum_values'],
-    'belongs_to' => ['target_display_column']
+    'image_field' => [],
+    'belongs_to' => ['target_display_column'],
+    'has_many' => ['target_model', 'target_section_id']
   }
 
   # returns array of possible field types

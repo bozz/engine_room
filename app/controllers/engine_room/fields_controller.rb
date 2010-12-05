@@ -42,6 +42,11 @@ module EngineRoom
     def create
       @field = Field.new(params[:field])
       @section = Section.find(params[:section_id])
+
+      if(params[:s_action]=='reload')
+        return reload_new
+      end
+
       if @field.save
         flash[:notice] = 'Field was successfully created.'
         redirect_to edit_engine_room_section_url(@section.id)
@@ -81,6 +86,20 @@ module EngineRoom
     end
 
     private
+
+      def reload_new
+        @field.attributes = params[:field]
+
+        if params[:field][:display_type] == 'has_many'
+          @field.column = 'id'
+          @field.field_type = 'has_many'
+        end
+
+        add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+        add_crumb('New Field')
+
+        render :action => :new
+      end
 
       def reload_edit
         @field.attributes = params[:field]

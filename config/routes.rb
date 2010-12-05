@@ -22,14 +22,22 @@ Rails.application.routes.draw do
     end
 
     controller :content do
+      #get     'content/:belongs_to_section/:belongs_to_id/:section_name/new'       => :new
+      #get     'content/:belongs_to_section/:belongs_to_id/:section_name'           => :index
+      #post    'content/:belongs_to_section/:belongs_to_id/:section_name'           => :create
+      #get     'content/:belongs_to_section/:belongs_to_id/:section_name/:id'       => :show,    :constraints => { :belongs_to_id => /\d+/ }
+      #get     'content/:belongs_to_section/:belongs_to_id/:section_name/:id/edit'  => :edit,    :constraints => { :belongs_to_id => /\d+/ }
+      #put     'content/:belongs_to_section/:belongs_to_id/:section_name/:id'       => :update,  :constraints => { :belongs_to_id => /\d+/ }
+      #delete  'content/:belongs_to_section/:belongs_to_id/:section_name/:id'       => :destroy, :constraints => { :belongs_to_id => /\d+/ }
+
       get     'content'                         => :overview
       get     'content/:section_name'           => :index
       get     'content/:section_name/new'       => :new
       post    'content/:section_name'           => :create
-      get     'content/:section_name/:id'       => :show
-      get     'content/:section_name/:id/edit'  => :edit
-      put     'content/:section_name/:id'       => :update
-      delete  'content/:section_name/:id'       => :destroy
+      get     'content/:section_name/:id'       => :show,    :constraints => { :id => /\d+/ }
+      get     'content/:section_name/:id/edit'  => :edit,    :constraints => { :id => /\d+/ }
+      put     'content/:section_name/:id'       => :update,  :constraints => { :id => /\d+/ }
+      delete  'content/:section_name/:id'       => :destroy, :constraints => { :id => /\d+/ }
     end
 
     # workaround for models resource for including dynamic segment

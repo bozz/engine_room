@@ -1,7 +1,7 @@
 module EngineRoom
   class ContentController < ApplicationController
     before_filter :authenticate_er_devise_user!
-    
+
     layout 'engine_room'
 
     add_crumb "Content", '/admin/content'
@@ -10,7 +10,7 @@ module EngineRoom
     helper_method :sort_column, :sort_direction
 
     unloadable
-    
+
     def init_section
       @section = Section.find_by_name(params[:section_name])
       if @section.nil?
@@ -18,7 +18,13 @@ module EngineRoom
         redirect_to :action => :overview
       else
         @model = get_model(@section.model_name) # TODO: catch exception
-        add_crumb @section.name.titleize, {:controller => 'engine_room/content', :action => :index}
+        if params[:bt_section] && params[:bt_id]
+          bt_section = Section.find_by_name(params[:bt_section])
+          add_crumb bt_section.name.titleize, {:controller => 'engine_room/content', :section_name => bt_section.name, :action => :index}
+          add_crumb params[:bt_id], {:controller => 'engine_room/content', :section_name => bt_section.name, :id => params[:bt_id], :action => :edit}
+        else
+          add_crumb @section.name.titleize, {:controller => 'engine_room/content', :action => :index}
+        end
       end
     end
 
@@ -26,10 +32,10 @@ module EngineRoom
       @sections = Section.all
     end
 
-    def index 
+    def index
       @elements = @model.order(sort_column + " " + sort_direction).paginate :page => params[:page], :per_page => 20
     end
-    
+
     def new
       @element = @model.new
       add_crumb "New #{@section.model_name.humanize}"

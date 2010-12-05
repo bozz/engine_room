@@ -1,1 +1,38 @@
 <%= render 'form' %>
+
+<% 
+  @section.has_many_fields.each do |hm_field| 
+    hm_section = Section.find(hm_field.target_section_id)
+    hm_elements = has_many_elements(@element, hm_field.target_model)
+%>
+
+  <h2>HasMany <%= hm_field.target_model.pluralize %></h2>
+
+  <%= link_to "Add New #{hm_field.target_model}", {:controller => 'engine_room/content', :section_name => hm_section.name, :action => :new, :bt_section => @section.name, :bt_id => @section.id}, :class => "button" %>
+
+  <% unless hm_elements.empty? %>
+  <div class="box">
+    <table>
+      <tr>
+        <% hm_section.overview_fields.each do |field| %>
+          <th><%= sortable field.column %></th>
+        <% end %>
+        <th>actions</th>
+      </tr>
+      <% hm_elements.each do |element| %>
+      <tr>
+        <% hm_section.overview_fields.each do |field| %>
+          <% if field.overview_link %>
+            <td><%= link_to element[field.column], {:controller => 'engine_room/content', :section_name => hm_section.name, :id => element.id, :action => :edit, :bt_section => @section.name, :bt_id => @section.id} %></td>
+          <% else %>
+            <td><%= element[field.column] %></td>
+          <% end %>
+        <% end %>
+        <td><%= link_to "delete", {:controller => 'engine_room/content', :section_name => hm_section.name, :id => element.id, :action => :destroy}, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <% end %>
+
+<% end %>

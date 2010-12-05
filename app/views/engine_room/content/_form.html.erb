@@ -1,6 +1,6 @@
 <%= render 'shared/error_messages', :object => @element %>
 
-<%= form_for @element, :url => {:controller => 'engine_room/content', :section_name => @section.name, :action => @element.id ? :update : :create} do |f| %>
+<%= form_for @element, :url => {:controller => 'engine_room/content', :section_name => @section.name, :action => @element.id ? :update : :create}, :html => {:multipart => true} do |f| %>
 
   <% @section.detail_fields.each do |field| %>
    <%= field_to_form(field, @element, f) %>

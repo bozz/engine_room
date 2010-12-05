@@ -1,4 +1,3 @@
-require 'crummy'
 
 module EngineRoom::ViewMethods
   def authorized?(options=nil)
@@ -11,7 +10,7 @@ ActionView::Base.send :include, EngineRoom::ViewMethods
 
  # monkeypatch override Crummy: last breadcrumb should not be a link
 module Crummy::ViewMethods
-  def render_crumbs(options = {})
+  def render_crumbs_mod(options = {})
     options[:format] = :html if options[:format] == nil
     if options[:seperator] == nil
       options[:seperator] = " &raquo; " if options[:format] == :html
