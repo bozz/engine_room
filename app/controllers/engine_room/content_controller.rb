@@ -45,7 +45,7 @@ module EngineRoom
       @element = @model.new(params[@section.model_name])
       if @element.save
         flash[:notice] = "#{@section.model_name.humanize} was successfully created."
-        redirect_to :action => :index
+        redirect_to_or_back :action => :index
       else
         add_crumb "New #{@section.model_name.humanize}"
         render :action => "new"
@@ -61,7 +61,7 @@ module EngineRoom
       @element = @model.find(params[:id])
       if @element.update_attributes(params[@section.model_name])
         flash[:notice] = "#{@section.model_name.humanize} was successfully updated."
-        redirect_to :action => :index
+        redirect_to_or_back :action => :index
       else
         add_crumb "Edit #{@section.model_name.humanize}"
         render :action => "edit"
@@ -73,10 +73,18 @@ module EngineRoom
       @element.destroy
 
       flash[:notice] = "#{@section.model_name.humanize} was successfully deleted."
-      redirect_to :action => :index
+      redirect_to_or_back :action => :index
     end
 
     private
+
+      def redirect_to_or_back options
+        if params[:bt_section] && params[:bt_id]
+          redirect_to :action => :edit, :section_name => params[:bt_section], :id => params[:bt_id]
+        else
+          redirect_to options
+        end
+      end
 
       def get_model model_name
         model = Object.const_get(model_name.singularize.camelize)
