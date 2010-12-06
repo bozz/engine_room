@@ -7,6 +7,23 @@ module EngineRoom
       link_to column.titleize, {:sort => column, :direction => direction}, {:class => css_class}
     end
 
+    def field_to_overview(field, element, section)
+      html = ""
+
+      content = "#{element[field.column]}" # field.column # element[field.column]
+
+      case field.field_type
+        when "paperclip_field"
+          img_name = element["#{field.column}_file_name"]
+          content = image_tag( element.send( field.column ).url, :title => img_name, :height => "50px" )
+      end
+
+      if field.overview_link
+        content = link_to content, {:controller => 'engine_room/content', :section_name => section.name, :id => element.id, :action => :edit}
+      end
+      html += content
+      return content_tag(:td, html, nil, false)
+    end
 
     def field_to_form(field, element, form)
 
@@ -33,8 +50,13 @@ module EngineRoom
           html += form.select field.column
         when "belongs_to"
           html += form.select field.column, options_for_belongs_to(field, element)
-        when "image_field"
-          html += form.file_field :image
+        when "paperclip_field"
+          if element.respond_to?("#{field.column}_file_name")
+            img_name = element["#{field.column}_file_name"]
+            html += image_tag( element.send( field.column ).url, :title => img_name, :height => "50px" )
+            html += content_tag(:p, "file name: #{img_name}")
+          end
+          html += form.file_field field.column
       end
 
       unless field.help.blank?

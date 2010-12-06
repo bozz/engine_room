@@ -10,5 +10,6 @@ module EngineRoom
 
     require 'engine_room/action_controller/controller_methods'
     require 'engine_room/action_view/view_methods'
+    require 'engine_room/active_record/record_methods'
   end
 end

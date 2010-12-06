@@ -11,11 +11,7 @@
     <% @elements.each do |element| %>
     <tr>
       <% @section.overview_fields.each do |field| %>
-        <% if field.overview_link %>
-          <td><%= link_to element[field.column], {:controller => 'engine_room/content', :section_name => @section.name, :id => element.id, :action => :edit} %></td>
-        <% else %>
-          <td><%= element[field.column] %></td>
-        <% end %>
+        <%= field_to_overview(field, element, @section) %>
       <% end %>
       <td><%= link_to "delete", {:controller => 'engine_room/content', :section_name => @section.name, :id => element.id, :action => :destroy}, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
     </tr>

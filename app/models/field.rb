@@ -27,7 +27,7 @@ class Field < ActiveRecord::Base
     'text_area' => [],
     'boolean' => [],
     'enum' => ['enum_values'],
-    'image_field' => [],
+    'paperclip_field' => [],
     'belongs_to' => ['target_display_column'],
     'has_many' => ['target_model', 'target_section_id']
   }
@@ -38,7 +38,7 @@ class Field < ActiveRecord::Base
   end
 
   def option_fields
-    self.field_type.blank? ? [] : @@field_config[self.field_type] 
+    self.field_type.blank? || !@@field_config.has_key?(self.field_type) ? [] : @@field_config[self.field_type] 
   end
 
   def self.valid_options
@@ -69,21 +69,15 @@ class Field < ActiveRecord::Base
       super + Field.valid_options
     end
 
-    # TODO: move to more central location - Kernel?
-    def object_to_boolean(value)
-      return [true, "true", 1, "1", "T", "t"].include?(value.class == String ? value.downcase : value)
-    end 
-
-
     def self.define_all_options
       valid_options.each { |opt| define_option(opt) }
     end
 
     def self.define_option(name)
-      define_method(name) {
+      define_method(name) do
         return false if self.options.blank?
         self.options[name]
-      }
+      end
       define_method("#{name}=") do |val|
         self.options = Hash.new if self.options.blank?
         self.options[name] = val

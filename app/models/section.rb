@@ -51,6 +51,14 @@ class Section < ActiveRecord::Base
 
   # returns array of valid column names of associated model
   def column_names
-    model.column_names
+    names = []
+    model.column_names.each do |col_name|
+      # for paperclip attachments, add base name
+      if col_name.match(/(.*)_file_name$/) 
+        names << $1 
+      end
+      names << col_name
+    end
+    return names
   end
 end
