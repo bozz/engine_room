@@ -1,5 +1,9 @@
 
 de:
+  time:
+    formats:
+      short: "%d.%m.%Y %H:%M"
+      long: "%B %d, %Y %H:%M"
   log_out: "ausloggen"
   preview: "Vorschau öffnen"
   nav:

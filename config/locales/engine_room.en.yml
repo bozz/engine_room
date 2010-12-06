@@ -1,5 +1,9 @@
 
 en:
+  time:
+    formats:
+      short: "%b %d, %Y %H:%M"
+      long: "%B %d, %Y %H:%M"
   log_out: "log out"
   preview: "open preview"
   nav:

@@ -9,7 +9,10 @@ module EngineRoom
 
 
     def field_to_overview(field, element, section, bt_section_name=nil, bt_id=nil)
-      html = "#{element[field.column]}" # field.column # element[field.column]
+      html = element[field.column]
+      if html.class.name == "Time"
+        html = l( html, :format => :short )
+      end
 
       case field.field_type
         when "paperclip_field"
