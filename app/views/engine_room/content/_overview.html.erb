@@ -3,24 +3,27 @@
   bt_id ||= nil
 %>
 <div class="box">
-  <table>
-    <tr>
-      <% section.overview_fields.each do |field| %>
-        <th><%= sortable field.column %></th>
+  <%= link_to "Add New #{section.model_name.humanize}", {:controller => 'engine_room/content', :section_name => section.name, :action => :new, :bt_section => bt_section_name, :bt_id => bt_id}, :class => "button" %>
+  <% unless elements.empty? %>
+    <table>
+      <tr>
+        <% section.overview_fields.each do |field| %>
+          <th><%= sortable field.column %></th>
+        <% end %>
+        <th>actions</th>
+      </tr>
+      <% elements.each do |element| %>
+      <tr>
+        <% section.overview_fields.each do |field| %>
+          <%= field_to_overview(field, element, section, bt_section_name, bt_id) %>
+        <% end %>
+        <td><%= link_to "delete", {:controller => 'engine_room/content', :section_name => section.name, :id => element.id, :action => :destroy, :bt_section => bt_section_name, :bt_id => bt_id}, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
+      </tr>
       <% end %>
-      <th>actions</th>
-    </tr>
-    <% elements.each do |element| %>
-    <tr>
-      <% section.overview_fields.each do |field| %>
-        <%= field_to_overview(field, element, section, bt_section_name, bt_id) %>
-      <% end %>
-      <td><%= link_to "delete", {:controller => 'engine_room/content', :section_name => section.name, :id => element.id, :action => :destroy, :bt_section => bt_section_name, :bt_id => bt_id}, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
-    </tr>
-    <% end %>
-  </table>
+    </table>
 
-  <br />
-  <%= will_paginate elements %>
+    <br />
+    <%= will_paginate elements %>
+  <% end %>
 
 </div>

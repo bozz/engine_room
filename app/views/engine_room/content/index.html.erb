@@ -1,3 +1,1 @@
-<%= link_to "Add New #{@section.model_name.humanize}", {:controller => 'engine_room/content', :section_name => @section.name, :action => :new}, :class => "button" %>
-
 <%= render :partial => "overview", :locals => {:section => @section, :elements => @elements} %>

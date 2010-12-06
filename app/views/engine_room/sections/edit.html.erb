@@ -1,64 +1,81 @@
-<%= render 'form' %>
+<div id="tabs">
+  <ul>
+    <li><a href="#tab1"><%= @section.name.titleize %></a></li>
+    <li><a href="#tab2">Overview Fields</a></li>
+    <li><a href="#tab3">Detail Fields</a></li>
+    <li><a href="#tab4">Has_Many Relationships</a></li>
+  </ul>
 
-<h2>Detail Fields</h2>
+  <div id="tab1">
+    <%= render 'form' %>
+  </div>
 
-<%= link_to "Add Field", new_engine_room_section_field_path(@section), :class => "button" %>
+  <div id="tab2">
+    <div class="box">
+      <%= link_to "Add Field", new_engine_room_section_field_path(@section), :class => "button" %>
+      <table id="overview-fields-table">
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Sort Order</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @section.overview_fields.each do |field| %>
+          <tr>
+            <td><%= link_to field.column, edit_engine_room_section_field_path(@section, field) %></td>
+            <td><%= field.field_type %></td>
+            <td><%= field.sort_order %></td>
+            <td><%= link_to 'delete', engine_room_section_field_path(@section, field), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<div class="box">
-	<table>
-		<tr>
-			<th>Column</th>
-			<th>Type</th>
-			<th>Sort Order</th>
-			<th>Actions</th>
-		</tr>
-		<% @section.detail_fields.each do |field| %>
-		<tr>
-			<td><%= link_to field.column, edit_engine_room_section_field_path(@section, field) %></td>
-			<td><%= field.field_type %></td>
-			<td><%= field.sort_order %></td>
-			<td><%= link_to 'delete', engine_room_section_field_path(@section, field), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
-		</tr>
-		<% end %>
-	</table>
-</div>
+  <div id="tab3">
+    <div class="box">
+      <%= link_to "Add Field", new_engine_room_section_field_path(@section), :class => "button" %>
+      <table>
+        <tr>
+          <th>Column</th>
+          <th>Type</th>
+          <th>Sort Order</th>
+          <th>Actions</th>
+        </tr>
+        <% @section.detail_fields.each do |field| %>
+        <tr>
+          <td><%= link_to field.column, edit_engine_room_section_field_path(@section, field) %></td>
+          <td><%= field.field_type %></td>
+          <td><%= field.sort_order %></td>
+          <td><%= link_to 'delete', engine_room_section_field_path(@section, field), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 
-<h2>HasMany Fields</h2>
+  <div id="tab4">
+    <div class="box">
+      <%= link_to "Add Field", new_engine_room_section_field_path(@section), :class => "button" %>
+      <table>
+        <tr>
+          <th>Model</th>
+          <th>Sort Order</th>
+          <th>Actions</th>
+        </tr>
+        <% @section.has_many_fields.each do |field| %>
+        <tr>
+          <td><%= link_to field.target_model, edit_engine_room_section_field_path(@section, field) %></td>
+          <td><%= field.sort_order %></td>
+          <td><%= link_to 'delete', engine_room_section_field_path(@section, field), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 
-<div class="box">
-	<table>
-		<tr>
-			<th>Model</th>
-			<th>Sort Order</th>
-			<th>Actions</th>
-		</tr>
-		<% @section.has_many_fields.each do |field| %>
-		<tr>
-			<td><%= link_to field.target_model, edit_engine_room_section_field_path(@section, field) %></td>
-			<td><%= field.sort_order %></td>
-			<td><%= link_to 'delete', engine_room_section_field_path(@section, field), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
-		</tr>
-		<% end %>
-	</table>
-</div>
-
-<h2>Overview Fields</h2>
-
-<div class="box">
-	<table>
-		<tr>
-			<th>Column</th>
-			<th>Type</th>
-			<th>Sort Order</th>
-			<th>Actions</th>
-		</tr>
-		<% @section.overview_fields.each do |field| %>
-		<tr>
-			<td><%= link_to field.column, edit_engine_room_section_field_path(@section, field) %></td>
-			<td><%= field.field_type %></td>
-			<td><%= field.sort_order %></td>
-			<td><%= link_to 'delete', engine_room_section_field_path(@section, field), :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
-		</tr>
-		<% end %>
-	</table>
-</div>
+</div><!-- #tabs -->
