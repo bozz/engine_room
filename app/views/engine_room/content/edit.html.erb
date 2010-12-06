@@ -11,28 +11,7 @@
   <%= link_to "Add New #{hm_field.target_model}", {:controller => 'engine_room/content', :section_name => hm_section.name, :action => :new, :bt_section => @section.name, :bt_id => @section.id}, :class => "button" %>
 
   <% unless hm_elements.empty? %>
-  <div class="box">
-    <table>
-      <tr>
-        <% hm_section.overview_fields.each do |field| %>
-          <th><%= sortable field.column %></th>
-        <% end %>
-        <th>actions</th>
-      </tr>
-      <% hm_elements.each do |element| %>
-      <tr>
-        <% hm_section.overview_fields.each do |field| %>
-          <% if field.overview_link %>
-            <td><%= link_to element[field.column], {:controller => 'engine_room/content', :section_name => hm_section.name, :id => element.id, :action => :edit, :bt_section => @section.name, :bt_id => @section.id} %></td>
-          <% else %>
-            <td><%= element[field.column] %></td>
-          <% end %>
-        <% end %>
-        <td><%= link_to "delete", {:controller => 'engine_room/content', :section_name => hm_section.name, :id => element.id, :action => :destroy, :bt_section => @section.name, :bt_id => @section.id}, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+    <%= render :partial => "overview", :locals => {:section => hm_section, :elements => hm_elements, :bt_section_name => @section.name, :bt_id => @element.id} %>
   <% end %>
 
 <% end %>

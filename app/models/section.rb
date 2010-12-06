@@ -61,4 +61,8 @@ class Section < ActiveRecord::Base
     end
     return names
   end
+
+  def model_count
+     model.count
+  end
 end

@@ -7,26 +7,29 @@ module EngineRoom
       link_to column.titleize, {:sort => column, :direction => direction}, {:class => css_class}
     end
 
-    def field_to_overview(field, element, section)
-      html = ""
 
-      content = "#{element[field.column]}" # field.column # element[field.column]
+    def field_to_overview(field, element, section, bt_section_name=nil, bt_id=nil)
+      html = "#{element[field.column]}" # field.column # element[field.column]
 
       case field.field_type
         when "paperclip_field"
           img_name = element["#{field.column}_file_name"]
-          content = image_tag( element.send( field.column ).url, :title => img_name, :height => "50px" )
+          html = image_tag( element.send( field.column ).url, :title => img_name, :height => "50px" )
       end
 
       if field.overview_link
-        content = link_to content, {:controller => 'engine_room/content', :section_name => section.name, :id => element.id, :action => :edit}
+        link_options = {:controller => 'engine_room/content', :section_name => section.name, :id => element.id, :action => :edit}
+        if bt_section_name && bt_id
+          link_options[:bt_section] = bt_section_name
+          link_options[:bt_id] = bt_id
+        end
+        html = link_to html, link_options
       end
-      html += content
       return content_tag(:td, html, nil, false)
     end
 
-    def field_to_form(field, element, form)
 
+    def field_to_form(field, element, form)
       html = form.label field.column, field.column.humanize
 
       case field.field_type
@@ -66,11 +69,12 @@ module EngineRoom
       return content_tag(:div, html, :class => "field")
     end
 
+    # get all elements that element has_many of (paginated)
     def has_many_elements(element, target_model)
       element.class.reflect_on_all_associations(:has_many).each do |assoc|
         if assoc.name.to_s == target_model.downcase.pluralize
           model = Object.const_get(target_model.singularize.camelize)
-          return element.send(target_model.downcase.pluralize)
+          return element.send(target_model.downcase.pluralize).paginate(:per_page => 10, :page => 1)
         end
       end
       return []

@@ -20,6 +20,10 @@ module EngineRoom
         @model = get_model(@section.model_name) # TODO: catch exception
         if params[:bt_section] && params[:bt_id]
           bt_section = Section.find_by_name(params[:bt_section])
+          if params.has_key?(@section.model_name) && @section.name != bt_section.name
+            # setup foreign key for has_many relationships
+            params[@section.model_name]["#{bt_section.model_name.singularize}_id"] = params[:bt_id]
+          end
           add_crumb bt_section.name.titleize, {:controller => 'engine_room/content', :section_name => bt_section.name, :action => :index}
           add_crumb params[:bt_id], {:controller => 'engine_room/content', :section_name => bt_section.name, :id => params[:bt_id], :action => :edit}
         else

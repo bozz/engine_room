@@ -1,24 +1,3 @@
 <%= link_to "Add New #{@section.model_name.humanize}", {:controller => 'engine_room/content', :section_name => @section.name, :action => :new}, :class => "button" %>
 
-<div class="box">
-  <table>
-    <tr>
-      <% @section.overview_fields.each do |field| %>
-        <th><%= sortable field.column %></th>
-      <% end %>
-      <th>actions</th>
-    </tr>
-    <% @elements.each do |element| %>
-    <tr>
-      <% @section.overview_fields.each do |field| %>
-        <%= field_to_overview(field, element, @section) %>
-      <% end %>
-      <td><%= link_to "delete", {:controller => 'engine_room/content', :section_name => @section.name, :id => element.id, :action => :destroy}, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
-    </tr>
-    <% end %>
-  </table>
-
-  <br />
-  <%= will_paginate @elements %>
-
-</div>
+<%= render :partial => "overview", :locals => {:section => @section, :elements => @elements} %>

@@ -1,6 +1,8 @@
 module EngineRoom
 
   if defined? Rails
+    #Dir.glob(Rails.root.to_s + '/app/models/*.rb').each { |file| require file }
+
     require 'engine_room/engine'
 
     require 'devise'

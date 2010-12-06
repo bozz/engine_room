@@ -2,22 +2,13 @@ module EngineRoom
   class SectionsController < ApplicationController
     before_filter :authenticate_er_devise_user!
     before_filter :authorize
-    
+
     layout 'engine_room'
-    
+
     add_crumb "Sections", '/admin/sections'
-    
+
     unloadable
-    
-    #def overview
-      # load all models 
-      #Dir.glob(Rails.root.to_s + '/app/models/*.rb').each { |file| require file }
-      
-      # access all loaded models
-      # TODO: causes tests to fail !! -- no database
-      #@models = ActiveRecord::Base.send(:descendants)
-    #end
-    
+
     # GET /section_configs
     def index
       @sections = Section.order('sort_order ASC')
@@ -74,6 +65,6 @@ module EngineRoom
       flash[:notice] = 'Section was successfully deleted.'
       redirect_to :action => :index
     end
-    
+
   end
 end

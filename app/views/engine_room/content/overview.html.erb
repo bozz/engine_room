@@ -2,12 +2,12 @@
 	<table>
 		<tr>
 			<th>Section</th>
-			<th>Sort Order</th>
+			<th>Count</th>
 		</tr>
 	<% @sections.each do |section| %>
 		<tr>
 			<td><%= link_to section.name.titleize, { :controller => 'content', :action => :index, :section_name => section.name }%></td>
-			<td><%= section.sort_order %></td>
+			<td><%= section.model_count %></td>
 		</tr>
 	<% end %>
 	</table>
