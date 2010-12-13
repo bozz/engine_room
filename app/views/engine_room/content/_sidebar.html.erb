@@ -1,0 +1,11 @@
+<div class="box">
+  <h3>Content Sections</h3>
+  <div class="box-content">
+    <ul>
+    <% @sections.each do |section| %>
+      <li><%= link_to section.name.titleize, { :controller => 'content', :action => :index, :section_name => section.name }%> 
+      (<%= section.model_count %>)</li>
+    <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,12 +1,17 @@
 module EngineRoom
   class FieldsController < ApplicationController
     before_filter :authenticate_er_devise_user!
+    before_filter :init_sections
 
     layout 'engine_room'
 
-    add_crumb "Sections", '/admin/sections'
-
     unloadable
+
+    def init_sections
+      @sections = Section.all
+      @layout = 'columns'
+      @sidebar = 'engine_room/sections'
+    end
 
     # GET /sections
     def index
@@ -25,7 +30,7 @@ module EngineRoom
       @field = Field.new
       @section = Section.find(params[:section_id])
 
-      add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+      add_crumb(@section.name.titleize, edit_engine_room_section_path(@section.id))
       add_crumb 'New Field'
     end
 
@@ -34,7 +39,7 @@ module EngineRoom
       @field = Field.find(params[:id])
       @section = Section.find(params[:section_id])
 
-      add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+      add_crumb(@section.name.titleize, edit_engine_room_section_path(@section.id))
       add_crumb('Edit Field', edit_engine_room_section_field_path(@section, @field.id))
     end
 
@@ -95,7 +100,7 @@ module EngineRoom
           @field.field_type = 'has_many'
         end
 
-        add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+        add_crumb(@section.name.titleize, edit_engine_room_section_path(@section.id))
         add_crumb('New Field')
 
         render :action => :new
@@ -104,7 +109,7 @@ module EngineRoom
       def reload_edit
         @field.attributes = params[:field]
 
-        add_crumb(@section.name, edit_engine_room_section_path(@section.id))
+        add_crumb(@section.name.titleize, edit_engine_room_section_path(@section.id))
         add_crumb('Edit Field', edit_engine_room_section_field_path(@section, @field.id))
 
         render :action => :edit

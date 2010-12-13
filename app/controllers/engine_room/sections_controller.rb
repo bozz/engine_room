@@ -2,12 +2,16 @@ module EngineRoom
   class SectionsController < ApplicationController
     before_filter :authenticate_er_devise_user!
     before_filter :authorize
+    before_filter :init_sections
 
     layout 'engine_room'
 
-    add_crumb "Sections", '/admin/sections'
-
     unloadable
+
+    def init_sections
+      @sections = Section.order('sort_order ASC')
+      @layout = 'columns'
+    end
 
     # GET /section_configs
     def index
@@ -30,7 +34,7 @@ module EngineRoom
     # GET /section/1/edit
     def edit
       @section = Section.find(params[:id])
-      add_crumb(@section.name, edit_engine_room_section_path(params[:id]))
+      add_crumb(@section.name.titleize, edit_engine_room_section_path(params[:id]))
     end
 
     # POST /section
@@ -52,7 +56,7 @@ module EngineRoom
         flash[:notice] = 'Section was successfully updated.'
         redirect_to :action => :index
       else
-        add_crumb(@section.name, edit_engine_room_section_path(params[:id]))
+        add_crumb(@section.name.titleize, edit_engine_room_section_path(params[:id]))
         render :action => :edit
       end
     end

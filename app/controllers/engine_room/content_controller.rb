@@ -1,17 +1,17 @@
 module EngineRoom
   class ContentController < ApplicationController
     before_filter :authenticate_er_devise_user!
+    before_filter :init_section, :except => [:overview]
 
     layout 'engine_room'
-
-    add_crumb "Content", '/admin/content'
-    before_filter :init_section, :except => [:overview]
 
     helper_method :sort_column, :sort_direction
 
     unloadable
 
     def init_section
+      @sections = Section.all
+      @layout = 'columns'
       @section = Section.find_by_name(params[:section_name])
       if @section.nil?
         flash[:alert] = "No section named #{params[:section_name]} was found."
@@ -34,6 +34,7 @@ module EngineRoom
 
     def overview
       @sections = Section.all
+      @layout = 'columns'
     end
 
     def index

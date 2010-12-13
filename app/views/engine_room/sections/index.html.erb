@@ -1,22 +1,3 @@
-<%= link_to t('.add_section'), new_engine_room_section_path, :class => "button" %>
-
 <div class="box">
-	
-	<table>
-		<tr>
-      <th>ID</th>
-			<th>Section</th>
-			<th>Model</th>
-			<th>Actions</th>
-		</tr>
-		<% @sections.each do |section| %>
-      <tr>
-        <td><%= section.id %></td>
-				<td><%= link_to section.name, { :controller => 'engine_room/sections', :action => :edit, :id => section.id } %></td>
-				<td><%= section.model_name.camelize %></td>
-				<td><%= link_to 'delete', { :controller => 'engine_room/sections', :action => :destroy, :id => section.id }, :method => :delete, :confirm => "You sure?", :title => "Delete?" %></td>
-			</tr>
-		<% end %>
-	</table>
-
+  Create a new section or select a section to modify its meta data.
 </div>

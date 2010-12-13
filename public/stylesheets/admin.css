@@ -28,6 +28,10 @@ h3 {
 	margin: 10px 0;
 }
 
+ul {
+  margin-left: 20px;
+}
+
 .icon-cut,
 .icon-add,
 .icon-edit,
@@ -221,32 +225,60 @@ nav div {
 #content {
 	padding: 10px;
 }
-#content a.back-link {
-	font-size: 11px;
-	position: relative;
-	top: -10px;
+#wrapper div.columns {
+  padding-left: 210px;
 }
-#content p {
-	/* font-size: 12px; */
+#content div.box {
+	padding: 15px 10px;
 }
-#content th,
-#content td {
-	font-size: 14px;
+#main {
+  display: inline-block;
+  float: right;
+  width: 100%;
 }
+#sidebar {
+  display: inline-block;
+  margin-left: -200px;
+  padding: 0;
+  padding-bottom: 60px;
+  width: 180px;
+}
+#sidebar h3 {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#999999');
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+	background: -moz-linear-gradient(top,  #ccc,  #999);
+  color: #444;
+  font-size: 1.0em;
+  margin: 0;
+  padding: 8px 10px 6px;
+}
+#sidebar div.box {
+  padding: 0;
+}
+#sidebar .box-content {
+  padding: 15px 10px;
+}
+#sidebar a.button {
+  display: inline-block;
+  margin: 10px 10px;
+}
+
+#content li {
+  margin-bottom: 5px;
+}
+#content ul.ui-tabs-nav li {
+  margin-bottom: 0;
+}
+
 /*
-#content table {
-	margin-top: 10px;
+#content p {
+	font-size: 12px;
 }
 #content th,
 #content td {
 	font-size: 14px;
-	line-height: 18px;
-	padding-right: 25px;
 }
-#content th {
-	padding-bottom: 5px;
-}
-*/
+
 #content .mceEditor table {
 	margin: 0;
 }
@@ -281,42 +313,7 @@ nav div {
 #content .section-list ul li {
 	margin-bottom: 5px;
 }
-
-#content .overview-search {
-	margin-top: 25px;
-}
-
-#content .overview-table {
-	/* border: 1px solid #ccc; */
-	/* margin-top: 25px; */
-	border-bottom: 1px solid #000;
-}
-#content .overview-table th {
-	background-color: #eee;
-	border-bottom: 1px solid #000;
-	border-top: 1px solid #000;
-	cursor: pointer;
-	font-weight: bold;
-	padding-top: 5px;
-}
-#content .overview-table td {
-	padding-top: 5px;
-	vertical-align: top;
-}
-#content .overview-table td.preview,
-#content .overview-table td.delete {
-	text-align: center;
-}
-#content .dataTables_info {
-	margin-top: 20px;
-}
-#content table th span {
-	font-weight: bold;
-	padding-right: 20px;
-}
-#content div.box {
-	padding: 10px;
-}
+*/
 
 /* Tables */
 
@@ -394,7 +391,7 @@ div.field input[type=text] {
 	width: 96%;
 }
 div.field textarea {
-	width: 800px
+	width: 96%;
 }
 div.field i {
 	color: #666;

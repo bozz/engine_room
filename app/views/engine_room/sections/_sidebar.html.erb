@@ -1,0 +1,11 @@
+<div class="box">
+  <h3>Sections</h3>
+  <div class="box-content">
+    <ul>
+    <% @sections.each do |section| %>
+      <li><%= link_to section.name.titleize, { :controller => 'engine_room/sections', :action => :edit, :id => section.id } %></li>
+    <% end %>
+    </ul>
+    <%= link_to 'Add Section', new_engine_room_section_path, :class => "button" %>
+  </div>
+</div>

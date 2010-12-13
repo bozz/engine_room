@@ -1,14 +1,3 @@
 <div class="box">
-	<table>
-		<tr>
-			<th>Section</th>
-			<th>Count</th>
-		</tr>
-	<% @sections.each do |section| %>
-		<tr>
-			<td><%= link_to section.name.titleize, { :controller => 'content', :action => :index, :section_name => section.name }%></td>
-			<td><%= section.model_count %></td>
-		</tr>
-	<% end %>
-	</table>
+  Select a Section to browse and edit content.
 </div>

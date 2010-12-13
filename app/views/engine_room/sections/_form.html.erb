@@ -16,4 +16,11 @@
   <div class="actions">
     <button type="submit"><%= @section.id ? "Update" : "Create" %></button>
   </div>
+
+  <% if @section.id %>
+    <div class="actions">
+      <%= link_to 'Delete Section?', { :controller => 'engine_room/sections', :action => :destroy, :id => @section.id }, :method => :delete, :confirm => "You sure?", :title => "Delete?" %>
+    </div>
+  <% end %>
+
 <% end %>

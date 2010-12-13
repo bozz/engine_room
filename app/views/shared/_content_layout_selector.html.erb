@@ -1,0 +1,42 @@
+<%
+  @layout ||= ''
+  @sidebar ||= params[:controller]
+%>
+
+<div id="content" class="clearfix <%= @layout %>">
+
+<% if @layout=='columns' %>
+
+  <div id="main">
+    <%- flash.each do |name, msg| -%>
+      <div id="flash_<%= name %>">
+      <%= msg %>
+      <a class="close">&nbsp;</a>
+    </div>
+    <%- end -%>
+
+    <h1><%= render_crumbs_mod(:seperator => " / ") %></h1>
+    <%= yield %>
+  </div>
+
+  <div id="sidebar">
+    <%= render :partial => "#{@sidebar}/sidebar" %>
+  </div>
+
+<% else %>
+
+  <%- flash.each do |name, msg| -%>
+  <div id="flash_<%= name %>">
+		<%= msg %>
+	  <a class="close">&nbsp;</a>
+	</div>
+  <%- end -%>
+
+  <h1><%= render_crumbs_mod(:seperator => " / ") %></h1>
+  <%= yield %>
+
+<% end %>
+
+</div><!-- #content -->
+
+

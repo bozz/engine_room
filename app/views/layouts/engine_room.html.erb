@@ -73,20 +73,8 @@
 			</div>
 		</nav>
 
-		<div id="content">
+		<%= render :partial => "shared/content_layout_selector" %>
 			
-			<%- flash.each do |name, msg| -%>
-				<div id="flash_<%= name %>">
-					<%= msg %>
-					<a class="close">&nbsp;</a>
-				</div>
-			<%- end -%>
-			
-			<h1><%= render_crumbs_mod(:seperator => " / ") %></h1>
-			
-			<%= yield %>
-		</div><!-- #content -->
-		
 		<footer>
 			<hr />
       <p class="quiet bottom">&copy; 2010 <a href="http://github.com/bozz/engine_room" target="parent">engine_room</a>.</p>
