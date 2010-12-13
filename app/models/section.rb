@@ -7,7 +7,7 @@ end
 
 class Section < ActiveRecord::Base
   has_many :fields, :dependent => :destroy
-  attr_accessible :name, :model_name, :sort_order
+  attr_accessible :name, :model_name, :view_type, :condition, :sort_order
 
   validates :name,        :presence => true
   validates :model_name,  :presence => true, :valid_model => true

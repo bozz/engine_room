@@ -1,30 +1,38 @@
-<div id="tabs">
-  <ul class="clearfix">
-    <li><a href="#tab1"><%= @section.model_name.titleize %></a></li>
-    <% 
-      counter = 1
-      @section.has_many_fields.each do |hm_field| 
-        counter += 1
-    %>
-      <li><a href="#tab<%= counter %>"><%= hm_field.target_model.pluralize %></a></li>
-    <% end %>
-  </ul>
-
-  <div id="tab1">
-    <%= render 'form' %>
-  </div>
-
-
-<% 
-  counter = 1
-  @section.has_many_fields.each do |hm_field| 
-    counter += 1
-    hm_section = Section.find(hm_field.target_section_id)
-    hm_elements = has_many_elements(@element, hm_field.target_model)
+<%
+  hm_relationships = @section.has_many_fields
 %>
 
-  <div id="tab<%= counter %>">
-    <%= render :partial => "overview", :locals => {:section => hm_section, :elements => hm_elements, :bt_section_name => @section.name, :bt_id => @element.id} %>
+<% if hm_relationships.length > 0 %>
+  <div id="tabs">
+    <ul class="clearfix">
+      <li><a href="#tab1">Form</a></li>
+      <% 
+        counter = 1
+        hm_relationships.each do |hm_field| 
+          counter += 1
+      %>
+        <li><a href="#tab<%= counter %>"><%= hm_field.target_model.pluralize %></a></li>
+      <% end %>
+    </ul>
+
+    <div id="tab1">
+      <%= render 'form' %>
+    </div>
+
+  <% 
+    counter = 1
+    hm_relationships.each do |hm_field| 
+      counter += 1
+      hm_section = Section.find(hm_field.target_section_id)
+      hm_elements = has_many_elements(@element, hm_field.target_model)
+  %>
+
+    <div id="tab<%= counter %>">
+      <%= render :partial => "overview", :locals => {:section => hm_section, :elements => hm_elements, :bt_section_name => @section.name, :bt_id => @element.id} %>
+    </div>
+  <% end %>
   </div>
+
+<% else %>
+    <%= render 'form' %>
 <% end %>
-</div>

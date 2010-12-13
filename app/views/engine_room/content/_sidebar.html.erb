@@ -4,7 +4,10 @@
     <ul>
     <% @sections.each do |section| %>
       <li><%= link_to section.name.titleize, { :controller => 'content', :action => :index, :section_name => section.name }%> 
-      (<%= section.model_count %>)</li>
+      <% unless section.view_type == 'detail' %>
+        (<%= section.model_count %>)
+      <% end %>
+      </li>
     <% end %>
     </ul>
   </div>

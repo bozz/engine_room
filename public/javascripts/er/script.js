@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
 
-  $("#tabs").tabs();
+  $("#tabs").tabs().show();
 
   $("#overview-fields-table tbody").sortable({
     axis: 'y',

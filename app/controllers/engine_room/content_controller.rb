@@ -38,7 +38,17 @@ module EngineRoom
     end
 
     def index
-      @elements = @model.order(sort_column + " " + sort_direction).paginate :page => params[:page], :per_page => 20
+      if @section.view_type == 'detail'
+        @element = @model.where(@section.condition).first
+        if @element
+          render :action => :edit
+        else
+          flash[:alert] = "No matching item could be found for section \"#{@section.name.titleize}\"."
+          redirect_to :action => :overview
+        end
+      else
+        @elements = @model.order(sort_column + " " + sort_direction).paginate :page => params[:page], :per_page => 20
+      end
     end
 
     def new
@@ -53,7 +63,7 @@ module EngineRoom
         redirect_to_or_back :action => :index
       else
         add_crumb "New #{@section.model_name.humanize}"
-        render :action => "new"
+        render :action => :new
       end
     end
 
@@ -69,7 +79,7 @@ module EngineRoom
         redirect_to_or_back :action => :index
       else
         add_crumb "Edit #{@section.model_name.humanize}"
-        render :action => "edit"
+        render :action => :edit
       end
     end
 

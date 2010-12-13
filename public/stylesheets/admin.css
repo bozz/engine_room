@@ -269,6 +269,9 @@ nav div {
 #content ul.ui-tabs-nav li {
   margin-bottom: 0;
 }
+#content #tabs {
+  display: none;
+}
 
 /*
 #content p {

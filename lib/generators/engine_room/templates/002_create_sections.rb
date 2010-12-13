@@ -3,6 +3,8 @@ class CreateSections < ActiveRecord::Migration
     create_table(:sections) do |t|
       t.string  :name, :null => false
       t.string  :model_name, :null => false
+      t.string  :view_type
+      t.string  :condition
       t.integer :sort_order
       t.timestamps
     end
