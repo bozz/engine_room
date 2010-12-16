@@ -24,6 +24,8 @@ module EngineRoom
       def setup
         migration_template "002_create_sections.rb", "db/migrate/create_sections.rb"
         migration_template "003_create_fields.rb", "db/migrate/create_fields.rb"
+
+        copy_file 'initializer.rb', 'config/initializers/engine_room.rb'
       end
     end
   end

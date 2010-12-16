@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  engine_room_path = 'admin'
+  engine_room_path = EngineRoom::Engine.config.mount_at
 
   namespace :er_devise, :path => engine_room_path do
     devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :sign_up => 'register' }
