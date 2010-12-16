@@ -34,10 +34,6 @@ describe EngineRoom::SectionsController do
     it "should be successful" do
       response.should be_success
     end
-
-    it "should have the right title" do
-      response.should have_selector("h1", :content => "Sections")
-    end
   end
   
   describe "GET 'edit'" do

@@ -5,7 +5,6 @@ log/*.log
 pkg/
 *.swp
 spec/dummy/app/models/*
-spec/dummy/db/*.sqlite3
-spec/dummy/db/migrate
+spec/dummy/db/
 spec/dummy/log/*.log
 spec/dummy/tmp/

@@ -1,6 +1,9 @@
 <%
+  require 'engine_room/crummy/custom_renderer'
+  crummy_renderer = Crummy::CustomRenderer.new
   @layout ||= ''
   @sidebar ||= params[:controller]
+
 %>
 
 <div id="content" class="clearfix <%= @layout %>">
@@ -15,7 +18,7 @@
     </div>
     <%- end -%>
 
-    <h1><%= render_crumbs_mod(:seperator => " / ") %></h1>
+    <h1><%= render_crumbs(:seperator => " / ", :renderer => crummy_renderer) %></h1>
     <%= yield %>
   </div>
 
@@ -32,7 +35,7 @@
 	</div>
   <%- end -%>
 
-  <h1><%= render_crumbs_mod(:seperator => " / ") %></h1>
+  <h1><%= render_crumbs(:seperator => " / ", :renderer => crummy_renderer) %></h1>
   <%= yield %>
 
 <% end %>

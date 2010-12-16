@@ -27,7 +27,7 @@ module EngineRoom
           add_crumb bt_section.name.titleize, {:controller => 'engine_room/content', :section_name => bt_section.name, :action => :index}
           add_crumb params[:bt_id], {:controller => 'engine_room/content', :section_name => bt_section.name, :id => params[:bt_id], :action => :edit}
         else
-          add_crumb @section.name.titleize, {:controller => 'engine_room/content', :action => :index}
+          add_crumb @section.name.titleize, {:controller => 'engine_room/content', :action => :index, :section_name => @section.name}
         end
       end
     end
