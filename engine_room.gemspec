@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Boris Searles"]
   s.email       = ["boris@lucidgardens.com"]
-  s.homepage    = "http://github.com/bozz/engineroom"
+  s.homepage    = "http://github.com/bozz/engine_room"
   s.summary     = %q{Unobtrusive rails admin interface}
-  s.description = %q{TODO: Write a gem description}
+  s.description = %q{EngineRoom aims to be a simple to use, unobtrusive admin interface for rails applications. It is designed to be an add-on for existing web apps and not a full blown CMS. Just add EngineRoom to an app and it will create a customizable interface for editing the content data.}
 
   s.rubyforge_project = "engine_room"
   
