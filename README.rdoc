@@ -1,3 +1,41 @@
 = EngineRoom
 
-This project rocks and uses MIT-LICENSE.
+EngineRoom aims to be a simple to use, unobtrusive admin interface for rails applications. It is designed to be an add-on for existing web apps and not a full blown CMS. Just add EngineRoom to an app and it will create a customizable interface for editing the content data.
+
+= Features
+
+* configure which models and which fields are editable
+* customize form fields 
+* support for has_many and belongs_to relationships
+* authentication und user management using Devise[http://github.com/plataformatec/devise]
+* currently supports admin and non-admin roles, where the admin can configure the interface and create new users
+* support for image uploads
+
+= Installation
+
+Add to your Gemfile
+
+  gem 'engine_room'
+
+then
+
+  bundle install
+
+to setup engine_room, run the following generator:
+
+  rails generator engine_room:setup
+
+which will create a few needed models, and finally:
+
+  rake db:migrate
+
+then start your server and go to /admin to access the admin interface.
+
+= Dependencies
+
+* Rails 3
+* devise
+* will_paginate
+* paperclip
+* crummy
+

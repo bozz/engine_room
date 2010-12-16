@@ -82,7 +82,7 @@ module EngineRoom
     private 
     
       def get_model model_name
-        model = Object.const_get(model_name.singularize.camelize)
+        model = Object.const_get(model_name.classify)
       end
     
   end

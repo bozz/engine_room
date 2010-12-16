@@ -32,12 +32,17 @@ describe EngineRoom::ContentController do
 
     before(:each) do
       sign_in Factory(:user)
-      section = Factory(:section)
-      get :index, :section_name => section.name
+      @section = Factory(:section)
     end
 
     it "should be successful" do
+      get :index, :section_name => @section.name
       response.should be_success
+    end
+
+    it "should redirect to overview for invalid section name" do
+      get :index, :section_name => "NoName"
+      response.should redirect_to({:controller => "content", :action => :overview})
     end
   end
   
