@@ -15,6 +15,12 @@ $(document).ready(function() {
   });
   //$("#overview-fields-table tbody").disableSelection();
 
+  var taWidth = $('form textarea.resizable').width();
+  $('form textarea.resizable').resizable({
+    maxWidth: taWidth + 10,
+    minWidth: 200
+  });
+
   // automatically reload forms when select has changed
   $("form div.reload select").change(function(){
     var hiddenField = document.createElement('input');

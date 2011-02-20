@@ -49,7 +49,7 @@ module EngineRoom
         when "date_field"
           html += form.date_select field.column
         when "text_area"
-          html += form.text_area field.column, :rows => 4
+          html += form.text_area field.column, :rows => 8, :class => 'resizable'
         when "boolean"
           html += form.check_box field.column
         when "enum"
